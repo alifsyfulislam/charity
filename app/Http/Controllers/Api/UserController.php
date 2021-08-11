@@ -76,4 +76,20 @@ class UserController extends Controller
         return $this->userService->changeItemStatus($request, $id);
 
     }
+
+    public function logout(Request $request) {
+
+        if ($request->user()->token()->revoke()){
+            return response()->json([
+                'status'        => config('status.status_code.200'),
+                'message'       => 'Logged out successfully!'
+            ]);
+
+        } else{
+            return response()->json([
+                'status'        => config('status.status_code.200'),
+                'message'       => "Could not logout!"
+            ]);
+        }
+    }
 }

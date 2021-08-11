@@ -57,6 +57,8 @@ Route::middleware('auth:api')->group(function(){
     Route::apiResource('abouts',AboutController::class);
     Route::post('about/status/{id}',[AboutController::class,'changeItemStatus']);
 
+    Route::post('user/logout', [UserController::class, 'logout']);
+
 });
 
 
