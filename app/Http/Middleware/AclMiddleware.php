@@ -19,13 +19,13 @@ class AclMiddleware
         if(!$request->user()->hasRole($role)) {
 
 
-            return response()->json(['status_code' => 424, 'messages'=>'User does not have the right permissions']);
+            return response()->json(['status' => 424, 'messages'=>'User does not have the right permissions']);
 
         }
 
         if($permission !== null && !$request->user()->can($permission)) {
 
-            return response()->json(['status_code' => 424, 'messages'=>'User does not have the right permissions']);
+            return response()->json(['status' => 424, 'messages'=>'User does not have the right permissions']);
         }
 
         return $next($request);

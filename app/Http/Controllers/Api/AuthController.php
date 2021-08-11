@@ -20,57 +20,54 @@ class AuthController extends Controller
     public function __construct(UserRepository $userRepository)
     {
 
-        $this->userRepository = $userRepository;
+        $this->userRepository   = $userRepository;
 
     }
 
 
     public function __invoke(Request $request)
     {
-        $input = $request->all();
+        $input                  = $request->all();
 
         $validator = Validator::make($request->all(), [
 
-            'username'=>'required',
-            'password' => 'required'
+            'username'          => 'required',
+            'password'          => 'required'
 
         ]);
 
         if ($validator->fails()) {
 
             return response()->json([
-                'status_code' => 400,
-                'messages'    => config('status.status_code.400'),
-                'errors'      => $validator->messages()->all()
+                'status_code'   => 400,
+                'messages'      => config('status.status_code.400'),
+                'errors'        => $validator->messages()->all()
             ]);
 
         } else {
 
-            $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+            $fieldType          = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
-            if(Auth::attempt(array($fieldType => $input['username'], 'password' => $input['password'])) )
+            if(Auth::attempt(array($fieldType   => $input['username'], 'password' => $input['password'])) )
             {
-                $user = Auth::user();
+                $user           = Auth::user();
 
-                $userInfo = $this->userRepository->show($user->id);
+                $userInfo       = $this->userRepository->show($user->id);
 
-                $success['status_code'] = 200;
-                $success['messages']    = config('status.status_code.200');
-                $success['token']       = $user->createToken('Charity')->accessToken;
-                $success['user_info']   = $userInfo;
-
-                return response()->json($success);
-
-//                if (Auth::user()->can('admin-panel')){
-//                    return response()->json($success);
-//                }else{
-//                    $success['status_code'] = 401;
-//                    $success['messages'] = config('status.status_code.401');
-//                    return response()->json($success);
-//                }
+                $success['status']              = 200;
+                $success['messages']            = config('status.status_code.200');
+                $success['token']               = $user->createToken('Charity')->accessToken;
+                $success['user_info']           = $userInfo;
+                if (Auth::user()->can('admin-panel')){
+                    return response()->json($success);
+                }else{
+                    $success['status']          = 401;
+                    $success['messages']        = config('status.status_code.401');
+                    return response()->json($success);
+                }
             } else {
-                $success['status_code'] = 451;
-                $success['messages'] = config('status.status_code.451');
+                $success['status']         = 451;
+                $success['messages']            = config('status.status_code.451');
                 return response()->json($success);
             }
 
