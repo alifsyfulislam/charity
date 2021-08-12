@@ -282,8 +282,50 @@ class AboutService
         return response()->json([
             'status'                => 200,
             'message'               => config('status.status_code.200'),
-            'about_info'          => $about_info
+            'about_info'            => $about_info
         ]);
 
+    }
+
+    public function checkUniqueIdentity($request)
+    {
+        $data                       = $request->all();
+
+        DB::beginTransaction();
+
+        try{
+
+            if (isset($data['name'])){
+                $about_info         = $this->aboutRepository->checkAboutName($data);
+            }
+
+        }catch (Exception $e) {
+
+            DB::rollBack();
+
+            Log::error('Found Exception: ' . $e->getMessage() . ' [Script: ' . __CLASS__ . '@' . __FUNCTION__ . '] [Origin: ' . $e->getFile() . '-' . $e->getLine() . ']');
+
+            return response()->json([
+                'status'            => 424,
+                'messages'          => config('status.status_code.424'),
+                'error'             => $e->getMessage()
+            ]);
+        }
+
+        DB::commit();
+
+        if (count($about_info) == 0){
+            return response()->json([
+                'status'                => 200,
+                'message'               => config('status.status_code.200'),
+                'availability'          => 'Available'
+            ]);
+        }else{
+            return response()->json([
+                'status'                => 200,
+                'message'               => config('status.status_code.200'),
+                'availability'          => 'Taken'
+            ]);
+        }
     }
 }

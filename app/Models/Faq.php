@@ -11,6 +11,11 @@ class Faq extends Model
 
     protected $fillable = ['id','name','slug','details','status'];
 
+    public function contents()
+    {
+        return $this->hasMany(Content::class,'link_id');
+    }
+
     public function getCreatedAtAttribute($date)
     {
 

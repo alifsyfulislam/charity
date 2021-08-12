@@ -11,14 +11,14 @@ class ServiceRepository
     public function listing($request)
     {
 
-        return Service::with('media')->orderBy('created_at','DESC')->paginate(15);
+        return Service::with('media','contents')->orderBy('created_at','DESC')->paginate(15);
 
     }
 
     public function show($id)
     {
 
-        return Service::with('media')->findorfail($id);
+        return Service::with('media','contents')->findorfail($id);
 
     }
 
@@ -38,7 +38,7 @@ class ServiceRepository
     public function update(array $data, $id)
     {
 
-        $service                    = Service::with('media')->findorfail($id);
+        $service                    = Service::with('media','contents')->findorfail($id);
         $service->name              = $data['name'];
         $service->slug              = $data['slug'];
         $service->details           = $data['details'];
@@ -50,9 +50,9 @@ class ServiceRepository
     public function delete($id)
     {
 
-        $service                    = Service::with('media')->findorfail($id);
+        $service                    = Service::with('media','contents')->findorfail($id);
 
-        if (isset($service->media)){
+        if (count($service->media) > 0){
             foreach ($service->media as $aFile)
             {
                 $fileName           = basename(parse_url($aFile->url, PHP_URL_PATH));
@@ -66,9 +66,16 @@ class ServiceRepository
     public function changeItemStatus(array $data, $id)
     {
 
-        $service                    = Service::with('media')->findorfail($id);
+        $service                    = Service::with('media','contents')->findorfail($id);
         $service->status            = $data['status'];
         $service->save();
+        return $service;
+    }
+
+    public function checkServiceName(array $data)
+    {
+
+        $service                    = Service::where('name',$data['name'])->get();
         return $service;
     }
 }

@@ -51,7 +51,7 @@ class RoleRepository
         $role->details              = $data['details'];
         $role->status               = $data['status'];
         //as well as all users status will be changed
-        if (isset($role->users)){
+        if (count($role->users) > 0){
             foreach ($role->users as $aUser){
                 $this->userRepository->changeItemStatus($data, $aUser->id);
             }
@@ -73,12 +73,19 @@ class RoleRepository
         $role                       = Role::with('permissions','users')->findorfail($id);
         $role->status               = $data['status'];
         //as well as all users status will be changed
-        if (isset($role->users)){
+        if (count($role->users) > 0){
             foreach ($role->users as $aUser){
                 $this->userRepository->changeItemStatus($data, $aUser->id);
             }
         }
         $role->save();
+        return $role;
+    }
+
+    public function checkRoleName(array $data)
+    {
+
+        $role                       = Role::where('name',$data['name'])->get();
         return $role;
     }
 }

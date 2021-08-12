@@ -50,4 +50,11 @@ class PermissionRepository
         $permission                     = Permission::findorfail($id);
         return $permission->delete();
     }
+
+    public function checkPermissionName(array $data)
+    {
+
+        $permission                           = Permission::where('name',$data['name'])->get();
+        return $permission;
+    }
 }

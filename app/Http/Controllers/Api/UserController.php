@@ -77,6 +77,10 @@ class UserController extends Controller
 
     }
 
+    public function checkUniqeInfo(Request $request){
+        return $this->userService->checkUniqueIdentity($request);
+    }
+
     public function logout(Request $request) {
 
         if ($request->user()->token()->revoke()){

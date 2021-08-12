@@ -170,7 +170,7 @@ class RoleService
             $role_info->permissions()->attach($request->input('permission'));
             $role_info              = $this->roleRepository->show($id);
             //role updated with permission at the same time users permission updated
-            if (isset($role_info->users)){
+            if (count($role_info->users) > 0){
                 $users_info = [];
                 foreach ($role_info->users as $aUser){
                     DB::table('users_permissions')->where('user_id', $aUser->id)->delete();
@@ -179,7 +179,7 @@ class RoleService
                 }
             }
 
-            if (isset($role_info->permissions)){
+            if (count($role_info->permissions) > 0){
                 foreach ($role_info->permissions as $aPermission){
                     foreach ($users_info as $aUser){
                         $aUser->permissions()->attach($aPermission);
@@ -275,5 +275,47 @@ class RoleService
             'role_info'             => $role_info
         ]);
 
+    }
+
+    public function checkUniqueIdentity($request)
+    {
+        $data                       = $request->all();
+
+        DB::beginTransaction();
+
+        try{
+
+            if (isset($data['name'])){
+                $role_info          = $this->roleRepository->checkRoleName($data);
+            }
+
+        }catch (Exception $e) {
+
+            DB::rollBack();
+
+            Log::error('Found Exception: ' . $e->getMessage() . ' [Script: ' . __CLASS__ . '@' . __FUNCTION__ . '] [Origin: ' . $e->getFile() . '-' . $e->getLine() . ']');
+
+            return response()->json([
+                'status'            => 424,
+                'messages'          => config('status.status_code.424'),
+                'error'             => $e->getMessage()
+            ]);
+        }
+
+        DB::commit();
+
+        if (count($role_info) == 0){
+            return response()->json([
+                'status'                => 200,
+                'message'               => config('status.status_code.200'),
+                'availability'          => 'Available'
+            ]);
+        }else{
+            return response()->json([
+                'status'                => 200,
+                'message'               => config('status.status_code.200'),
+                'availability'          => 'Taken'
+            ]);
+        }
     }
 }

@@ -11,14 +11,14 @@ class GalleryRepository
     public function listing($request)
     {
 
-        return Gallery::with('media')->orderBy('created_at','DESC')->paginate(15);
+        return Gallery::with('media','event.media','event.causes.media')->orderBy('created_at','DESC')->paginate(15);
 
     }
 
     public function show($id)
     {
 
-        return Gallery::with('media')->findorfail($id);
+        return Gallery::with('media','event.media','event.causes.media')->findorfail($id);
 
     }
 
@@ -39,7 +39,7 @@ class GalleryRepository
     public function update(array $data, $id)
     {
 
-        $gallery                   = Gallery::with('media')->findorfail($id);
+        $gallery                   = Gallery::with('media','event.media','event.causes.media')->findorfail($id);
         $gallery->event_id         = $data['event_id'];
         $gallery->name             = $data['name'];
         $gallery->slug             = $data['slug'];
@@ -52,9 +52,9 @@ class GalleryRepository
     public function delete($id)
     {
 
-        $gallery                   = Gallery::with('media')->findorfail($id);
+        $gallery                   = Gallery::with('media','event.media','event.causes.media')->findorfail($id);
 
-        if (isset($gallery->media)){
+        if (count($gallery->media) > 0){
             foreach ($gallery->media as $aFile)
             {
                 $fileName         = basename(parse_url($aFile->url, PHP_URL_PATH));
@@ -68,9 +68,16 @@ class GalleryRepository
     public function changeItemStatus(array $data, $id)
     {
 
-        $gallery                  = Gallery::with('media')->findorfail($id);
+        $gallery                  = Gallery::with('media','event.media','event.causes.media')->findorfail($id);
         $gallery->status          = $data['status'];
         $gallery->save();
+        return $gallery;
+    }
+
+    public function checkGalleryName(array $data)
+    {
+
+        $gallery                   = Gallery::where('name',$data['name'])->get();
         return $gallery;
     }
 }

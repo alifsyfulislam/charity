@@ -76,4 +76,10 @@ class FaqController extends Controller
         return $this->faqService->changeItemStatus($request, $id);
 
     }
+
+    public function checkUniqeInfo(Request $request)
+    {
+
+        return $this->faqService->checkUniqueIdentity($request);
+    }
 }

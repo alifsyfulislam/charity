@@ -251,4 +251,46 @@ class FaqService
         ]);
 
     }
+
+    public function checkUniqueIdentity($request)
+    {
+        $data                       = $request->all();
+
+        DB::beginTransaction();
+
+        try{
+
+            if (isset($data['name'])){
+                $faq_info           = $this->faqRepository->checkFaqName($data);
+            }
+
+        }catch (Exception $e) {
+
+            DB::rollBack();
+
+            Log::error('Found Exception: ' . $e->getMessage() . ' [Script: ' . __CLASS__ . '@' . __FUNCTION__ . '] [Origin: ' . $e->getFile() . '-' . $e->getLine() . ']');
+
+            return response()->json([
+                'status'            => 424,
+                'messages'          => config('status.status_code.424'),
+                'error'             => $e->getMessage()
+            ]);
+        }
+
+        DB::commit();
+
+        if (count($faq_info) == 0){
+            return response()->json([
+                'status'                => 200,
+                'message'               => config('status.status_code.200'),
+                'availability'          => 'Available'
+            ]);
+        }else{
+            return response()->json([
+                'status'                => 200,
+                'message'               => config('status.status_code.200'),
+                'availability'          => 'Taken'
+            ]);
+        }
+    }
 }

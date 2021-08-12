@@ -76,4 +76,10 @@ class CauseController extends Controller
         return $this->causeService->changeItemStatus($request, $id);
 
     }
+
+    public function checkUniqeInfo(Request $request)
+    {
+
+        return $this->causeService->checkUniqueIdentity($request);
+    }
 }

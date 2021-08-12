@@ -63,4 +63,11 @@ class FaqRepository
         $faq->save();
         return $faq;
     }
+
+    public function checkFaqName(array $data)
+    {
+
+        $faq                        = Faq::where('name',$data['name'])->get();
+        return $faq;
+    }
 }

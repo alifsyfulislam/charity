@@ -16,7 +16,7 @@ class CreateGalleriesTable extends Migration
         Schema::create('galleries', function (Blueprint $table) {
             $table->uuid('id')->primary()->unique();
             $table->uuid('event_id');
-            $table->string('name')->index();
+            $table->string('name')->index()->unique();
             $table->string('slug');
             $table->text('details')->nullable();
             $table->tinyInteger('status')->comment('0 => Inactive, 1 => Active');

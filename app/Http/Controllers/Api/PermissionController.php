@@ -69,4 +69,10 @@ class PermissionController extends Controller
     {
         return $this->permissionService->deleteItem($id);
     }
+
+    public function checkUniqeInfo(Request $request)
+    {
+
+        return $this->permissionService->checkUniqueIdentity($request);
+    }
 }

@@ -23,6 +23,11 @@ class Cause extends Model
 
     }
 
+    public function contents()
+    {
+        return $this->hasMany(Content::class,'link_id');
+    }
+
     public function getCreatedAtAttribute($date)
     {
 

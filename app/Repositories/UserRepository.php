@@ -62,8 +62,7 @@ class UserRepository
 
         $user                      = User::with('media','roles.permissions')->findorfail($id);
 
-
-        if (isset($user->media)){
+        if (count($user->media) > 0){
             foreach ($user->media as $aFile)
             {
                 $fileName          = basename(parse_url($aFile->url, PHP_URL_PATH));
@@ -80,6 +79,21 @@ class UserRepository
         $user                     = User::with('media','roles.permissions')->findorfail($id);
         $user->status             = $data['status'];
         $user->save();
+        return $user;
+    }
+
+    public function checkUserName(array $data){
+        $user                     = User::where('username',$data['username'])->get();
+        return $user;
+    }
+
+    public function checkUserEmail(array $data){
+        $user                     = User::where('email',$data['email'])->get();
+        return $user;
+    }
+
+    public function checkUserMobile(array $data){
+        $user                     = User::where('mobile',$data['mobile'])->get();
         return $user;
     }
 }

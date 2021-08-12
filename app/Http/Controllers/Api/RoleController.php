@@ -79,4 +79,10 @@ class RoleController extends Controller
         return $this->roleService->changeItemStatus($request, $id);
 
     }
+
+    public function checkUniqeInfo(Request $request)
+    {
+
+        return $this->roleService->checkUniqueIdentity($request);
+    }
 }

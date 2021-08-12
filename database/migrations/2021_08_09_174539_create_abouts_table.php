@@ -15,7 +15,7 @@ class CreateAboutsTable extends Migration
     {
         Schema::create('abouts', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name')->index();
+            $table->string('name')->unique()->index();
             $table->string('slug');
             $table->text('details')->nullable();
             $table->tinyInteger('status')->comment('0 => Inactive, 1 => Active');

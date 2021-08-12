@@ -76,4 +76,10 @@ class GalleryController extends Controller
         return $this->galleryService->changeItemStatus($request, $id);
 
     }
+
+    public function checkUniqeInfo(Request $request)
+    {
+
+        return $this->galleryService->checkUniqueIdentity($request);
+    }
 }

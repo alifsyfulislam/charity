@@ -93,7 +93,7 @@ class GalleryService
     {
         $validator = Validator::make($request->all(),[
 
-            'name'                  => 'required|string|max:200|min:3|unique:causes',
+            'name'                  => 'required|string|max:200|min:3|unique:galleries',
             'event_id'              => 'required',
             'image'                 => 'mimes:jpeg,jpg,png,gif|required|max:10000'
 
@@ -292,6 +292,48 @@ class GalleryService
             'gallery_info'          => $gallery_info
         ]);
 
+    }
+
+    public function checkUniqueIdentity($request)
+    {
+        $data                       = $request->all();
+
+        DB::beginTransaction();
+
+        try{
+
+            if (isset($data['name'])){
+                $gallery_info       = $this->galleryRepository->checkGalleryName($data);
+            }
+
+        }catch (Exception $e) {
+
+            DB::rollBack();
+
+            Log::error('Found Exception: ' . $e->getMessage() . ' [Script: ' . __CLASS__ . '@' . __FUNCTION__ . '] [Origin: ' . $e->getFile() . '-' . $e->getLine() . ']');
+
+            return response()->json([
+                'status'            => 424,
+                'messages'          => config('status.status_code.424'),
+                'error'             => $e->getMessage()
+            ]);
+        }
+
+        DB::commit();
+
+        if (count($gallery_info) == 0){
+            return response()->json([
+                'status'                => 200,
+                'message'               => config('status.status_code.200'),
+                'availability'          => 'Available'
+            ]);
+        }else{
+            return response()->json([
+                'status'                => 200,
+                'message'               => config('status.status_code.200'),
+                'availability'          => 'Taken'
+            ]);
+        }
     }
 
 }

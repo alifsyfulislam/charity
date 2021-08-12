@@ -3,16 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Services\EventService;
+use App\Services\ContentService;
 use Illuminate\Http\Request;
-class EventController extends Controller
-{
-    protected $serviceService;
 
-    public function __construct(EventService $eventService)
+class ContentController extends Controller
+{
+    protected $contentService;
+
+    public function __construct(ContentService $contentService)
     {
         // $this->middleware('acl:super-admin');
-        $this->eventService = $eventService;
+        $this->contentService = $contentService;
     }
     /**
      * Display a listing of the resource.
@@ -21,7 +22,7 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
-        return $this->eventService->listItems($request);
+        return $this->contentService->listItems($request);
     }
 
     /**
@@ -32,7 +33,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->eventService->createItem($request);
+        return $this->contentService->createItem($request);
     }
 
     /**
@@ -43,7 +44,7 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        return $this->eventService->showItem($id);
+        return $this->contentService->showItem($id);
     }
 
     /**
@@ -55,7 +56,7 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->eventService->updateItem($request,$id);
+        return $this->contentService->updateItem($request,$id);
     }
 
     /**
@@ -66,19 +67,6 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        return $this->eventService->deleteItem($id);
-    }
-
-    public function changeItemStatus(Request $request, $id)
-    {
-
-        return $this->eventService->changeItemStatus($request, $id);
-
-    }
-
-    public function checkUniqeInfo(Request $request)
-    {
-
-        return $this->eventService->checkUniqueIdentity($request);
+        return $this->contentService->deleteItem($id);
     }
 }

@@ -125,7 +125,7 @@ class UserService
 
             $userRole               = $this->roleRepository->show($request->input('roles'));
 
-            if (isset($userRole->permissions)){
+            if (count($userRole->permissions) > 0){
                 foreach ($userRole->permissions as $aPermission){
                     $user_info->permissions()->attach($aPermission);
                 }
@@ -205,7 +205,7 @@ class UserService
             DB::table('users_permissions')->where('user_id', $id)->delete();
             $userRole               = $this->roleRepository->show($request->input('roles'));
 
-            if (isset($userRole->permissions)){
+            if (count($userRole->permissions) > 0){
                 foreach ($userRole->permissions as $aPermission){
                     $user_info->permissions()->attach($aPermission);
                 }
@@ -323,6 +323,54 @@ class UserService
             'user_info'             => $user_info
         ]);
 
+    }
+
+    public function checkUniqueIdentity($request)
+    {
+        $data                       = $request->all();
+
+        DB::beginTransaction();
+
+        try{
+
+            if (isset($data['username'])){
+                $user_info          = $this->userRepository->checkUserName($data);
+            }
+            if (isset($data['email'])){
+                $user_info          = $this->userRepository->checkUserEmail($data);
+            }
+            if (isset($data['mobile'])){
+                $user_info          = $this->userRepository->checkUserMobile($data);
+            }
+
+        }catch (Exception $e) {
+
+            DB::rollBack();
+
+            Log::error('Found Exception: ' . $e->getMessage() . ' [Script: ' . __CLASS__ . '@' . __FUNCTION__ . '] [Origin: ' . $e->getFile() . '-' . $e->getLine() . ']');
+
+            return response()->json([
+                'status'            => 424,
+                'messages'          => config('status.status_code.424'),
+                'error'             => $e->getMessage()
+            ]);
+        }
+
+        DB::commit();
+
+        if (count($user_info) == 0){
+            return response()->json([
+                'status'                => 200,
+                'message'               => config('status.status_code.200'),
+                'availability'          => 'Available'
+            ]);
+        }else{
+            return response()->json([
+                'status'                => 200,
+                'message'               => config('status.status_code.200'),
+                'availability'          => 'Taken'
+            ]);
+        }
     }
 
 }

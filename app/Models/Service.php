@@ -16,6 +16,11 @@ class Service extends Model
         return $this->morphMany(Media::class, 'mediable');
     }
 
+//    public function contents()
+//    {
+//        return $this->hasMany(Content::class,'link_id');
+//    }
+
     public function getCreatedAtAttribute($date)
     {
 

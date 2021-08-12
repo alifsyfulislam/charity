@@ -53,7 +53,7 @@ class AboutRepository
 
         $about                      = About::with('media')->findorfail($id);
 
-        if (isset($about->media)){
+        if (count($about->media) > 0){
             foreach ($about->media as $aFile)
             {
                 $fileName           = basename(parse_url($aFile->url, PHP_URL_PATH));
@@ -70,6 +70,13 @@ class AboutRepository
         $about                      = About::with('media')->findorfail($id);
         $about->status              = $data['status'];
         $about->save();
+        return $about;
+    }
+
+    public function checkAboutName(array $data)
+    {
+
+        $about                      = About::where('name',$data['name'])->get();
         return $about;
     }
 }

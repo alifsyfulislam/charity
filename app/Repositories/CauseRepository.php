@@ -11,14 +11,14 @@ class CauseRepository
     public function listing($request)
     {
 
-        return Cause::with('media')->orderBy('created_at','DESC')->paginate(15);
+        return Cause::with('media','event.media','contents')->orderBy('created_at','DESC')->paginate(15);
 
     }
 
     public function show($id)
     {
 
-        return Cause::with('media')->findorfail($id);
+        return Cause::with('media','event.media','contents')->findorfail($id);
 
     }
 
@@ -41,7 +41,7 @@ class CauseRepository
     public function update(array $data, $id)
     {
 
-        $cause                    = Cause::with('media')->findorfail($id);
+        $cause                    = Cause::with('media','event.media','contents')->findorfail($id);
         $cause->event_id          = $data['event_id'];
         $cause->name              = $data['name'];
         $cause->slug              = $data['slug'];
@@ -57,9 +57,9 @@ class CauseRepository
     public function delete($id)
     {
 
-        $cause                    = Cause::with('media')->findorfail($id);
+        $cause                    = Cause::with('media','event.media','contents')->findorfail($id);
 
-        if (isset($cause->media)){
+        if (count($cause->media) > 0){
             foreach ($cause->media as $aFile)
             {
                 $fileName         = basename(parse_url($aFile->url, PHP_URL_PATH));
@@ -73,9 +73,16 @@ class CauseRepository
     public function changeItemStatus(array $data, $id)
     {
 
-        $cause                    = Cause::with('media')->findorfail($id);
+        $cause                    = Cause::with('media','event.media','contents')->findorfail($id);
         $cause->status            = $data['status'];
         $cause->save();
+        return $cause;
+    }
+
+    public function checkCauseName(array $data)
+    {
+
+        $cause                     = Cause::where('name',$data['name'])->get();
         return $cause;
     }
 }

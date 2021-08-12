@@ -23,15 +23,16 @@ class AboutController extends Controller
      */
     public function index(Request $request)
     {
-        if(Auth::user()->can('admin-panel')) {
-
-            return $this->aboutService->listItems($request);
-
-        } else {
-
-            return response()->json(['status_code' => 424, 'messages'=>'User does not have the right permissions']);
-
-        }
+        return $this->aboutService->listItems($request);
+//        if(Auth::user()->can('admin-panel')) {
+//
+//            return $this->aboutService->listItems($request);
+//
+//        } else {
+//
+//            return response()->json(['status_code' => 424, 'messages'=>'User does not have the right permissions']);
+//
+//        }
     }
 
     /**
@@ -84,5 +85,11 @@ class AboutController extends Controller
 
         return $this->aboutService->changeItemStatus($request, $id);
 
+    }
+
+    public function checkUniqeInfo(Request $request)
+    {
+
+        return $this->aboutService->checkUniqueIdentity($request);
     }
 }

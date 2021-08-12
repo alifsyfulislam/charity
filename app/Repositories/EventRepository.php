@@ -21,14 +21,14 @@ class EventRepository
     public function listing($request)
     {
 
-        return Event::with('media','causes.media','galleries.media')->orderBy('created_at','DESC')->paginate(15);
+        return Event::with('media','causes.media','galleries.media','contents')->orderBy('created_at','DESC')->paginate(15);
 
     }
 
     public function show($id)
     {
 
-        return Event::with('media','causes.media','galleries.media')->findorfail($id);
+        return Event::with('media','causes.media','galleries.media','contents')->findorfail($id);
 
     }
 
@@ -49,7 +49,7 @@ class EventRepository
     public function update(array $data, $id)
     {
 
-        $event                    = Event::with('media','causes.media','galleries.media')->findorfail($id);
+        $event                    = Event::with('media','causes.media','galleries.media','contents')->findorfail($id);
         $event->name              = $data['name'];
         $event->location          = $data['location'];
         $event->slug              = $data['slug'];
@@ -57,14 +57,14 @@ class EventRepository
         $event->status            = $data['status'];
 
         //as well as all cause status will be changed
-        if (isset($event->causes)){
+        if (count($event->causes) > 0){
             foreach ($event->causes as $aCause){
                 $this->causeRepository->changeItemStatus($data, $aCause->id);
             }
         }
 
         //as well as all gallery status will be changed
-        if (isset($event->galleries)){
+        if (count($event->galleries) > 0){
             foreach ($event->galleries as $aGallery){
                 $this->galleryRepository->changeItemStatus($data, $aGallery->id);
             }
@@ -77,24 +77,24 @@ class EventRepository
     public function delete($id)
     {
 
-        $event                    = Event::with('media','causes.media','galleries.media')->findorfail($id);
+        $event                    = Event::with('media','causes.media','galleries.media','contents')->findorfail($id);
 
         //cause delete
-        if (isset($event->causes)){
+        if (count($event->causes) > 0){
             foreach ($event->causes as $aCause){
                 $this->causeRepository->delete($aCause->id);
             }
         }
 
         //gallery delete
-        if (isset($event->galleries)){
+        if (count($event->galleries) > 0){
             foreach ($event->galleries as $aGallery){
                 $this->galleryRepository->delete($aGallery->id);
             }
         }
 
         //event media delete
-        if (isset($event->media)){
+        if (count($event->media) > 0){
             foreach ($event->media as $aFile)
             {
                 $fileName         = basename(parse_url($aFile->url, PHP_URL_PATH));
@@ -108,24 +108,32 @@ class EventRepository
     public function changeItemStatus(array $data, $id)
     {
 
-        $event                    = Event::with('media','causes.media','galleries.media')->findorfail($id);
+        $event                    = Event::with('media','causes.media','galleries.media','contents')->findorfail($id);
         $event->status            = $data['status'];
 
         //as well as all cause status will be changed
-        if (isset($event->causes)){
+        if (count($event->causes) > 0){
             foreach ($event->causes as $aCause){
                 $this->causeRepository->changeItemStatus($data, $aCause->id);
             }
         }
 
         //as well as all gallery status will be changed
-        if (isset($event->galleries)){
+        if (count($event->galleries) > 0){
             foreach ($event->galleries as $aGallery){
                 $this->galleryRepository->changeItemStatus($data, $aGallery->id);
             }
         }
 
         $event->save();
+        return $event;
+    }
+
+
+    public function checkEventName(array $data)
+    {
+
+        $event                  = Event::where('name',$data['name'])->get();
         return $event;
     }
 }

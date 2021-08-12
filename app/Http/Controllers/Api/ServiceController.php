@@ -87,4 +87,10 @@ class ServiceController extends Controller
         return $this->serviceService->changeItemStatus($request, $id);
 
     }
+
+    public function checkUniqeInfo(Request $request)
+    {
+
+        return $this->serviceService->checkUniqueIdentity($request);
+    }
 }
