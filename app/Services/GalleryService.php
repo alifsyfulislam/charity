@@ -94,7 +94,7 @@ class GalleryService
         $validator = Validator::make($request->all(),[
 
             'name'                  => 'required|string|max:200|min:3|unique:galleries',
-            'event_id'              => 'required',
+            'cause_id'              => 'required',
             'image'                 => 'mimes:jpeg,jpg,png,gif|required|max:10000'
 
         ]);
@@ -157,7 +157,7 @@ class GalleryService
     {
         $validator = Validator::make($request->all(),[
             'name'                  => "required|string|max:200|min:3|unique:galleries,name,$id,id",
-            'event_id'              => 'required',
+            'cause_id'              => 'required',
 //            'image'                 => 'mimes:jpeg,jpg,png,gif|required|max:10000'
         ]);
 

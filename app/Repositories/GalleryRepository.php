@@ -11,14 +11,14 @@ class GalleryRepository
     public function listing($request)
     {
 
-        return Gallery::with('media','event.media','event.causes.media')->orderBy('created_at','DESC')->paginate(15);
+        return Gallery::with('media','cause.media')->orderBy('created_at','DESC')->paginate(15);
 
     }
 
     public function show($id)
     {
 
-        return Gallery::with('media','event.media','event.causes.media')->findorfail($id);
+        return Gallery::with('media','cause.media')->findorfail($id);
 
     }
 
@@ -27,7 +27,7 @@ class GalleryRepository
 
         $gallery                   = new Gallery();
         $gallery->id               = $data['id'];
-        $gallery->event_id         = $data['event_id'];
+        $gallery->cause_id         = $data['cause_id'];
         $gallery->name             = $data['name'];
         $gallery->slug             = $data['slug'];
         $gallery->details          = $data['details'];
@@ -39,8 +39,8 @@ class GalleryRepository
     public function update(array $data, $id)
     {
 
-        $gallery                   = Gallery::with('media','event.media','event.causes.media')->findorfail($id);
-        $gallery->event_id         = $data['event_id'];
+        $gallery                   = Gallery::with('media','cause.media')->findorfail($id);
+        $gallery->cause_id         = $data['cause_id'];
         $gallery->name             = $data['name'];
         $gallery->slug             = $data['slug'];
         $gallery->details          = $data['details'];
@@ -52,7 +52,7 @@ class GalleryRepository
     public function delete($id)
     {
 
-        $gallery                   = Gallery::with('media','event.media','event.causes.media')->findorfail($id);
+        $gallery                   = Gallery::with('media','cause.media')->findorfail($id);
 
         if (count($gallery->media) > 0){
             foreach ($gallery->media as $aFile)
@@ -68,7 +68,7 @@ class GalleryRepository
     public function changeItemStatus(array $data, $id)
     {
 
-        $gallery                  = Gallery::with('media','event.media','event.causes.media')->findorfail($id);
+        $gallery                  = Gallery::with('media','cause.media')->findorfail($id);
         $gallery->status          = $data['status'];
         $gallery->save();
         return $gallery;

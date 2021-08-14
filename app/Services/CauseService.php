@@ -88,7 +88,7 @@ class CauseService
         $validator = Validator::make($request->all(),[
 
             'name'                  => 'required|string|max:200|min:3|unique:causes',
-            'event_id'              => 'required',
+//            'event_id'              => 'required',
             'target_fund'           => 'required',
             'raised_fund'           => 'required',
             'image'                 => 'mimes:jpeg,jpg,png,gif|required|max:10000'
@@ -152,7 +152,7 @@ class CauseService
     {
         $validator = Validator::make($request->all(),[
             'name'                  => "required|string|max:200|min:3|unique:causes,name,$id,id",
-            'event_id'              => 'required',
+//            'event_id'              => 'required',
             'target_fund'           => 'required',
             'raised_fund'           => 'required',
 //            'image'                 => 'mimes:jpeg,jpg,png,gif|required|max:10000'

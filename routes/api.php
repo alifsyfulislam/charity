@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ContentController;
+use App\Http\Controllers\Api\SliderController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -67,6 +68,10 @@ Route::middleware('auth:api')->group(function(){
     Route::apiResource('abouts',AboutController::class);
     Route::post('about/status/{id}',[AboutController::class,'changeItemStatus']);
     Route::post('about/unique-info', [AboutController::class, 'checkUniqeInfo']);
+
+    Route::apiResource('sliders',SliderController::class);
+    Route::post('slider/status/{id}',[SliderController::class,'changeItemStatus']);
+    Route::post('slider/unique-info', [SliderController::class, 'checkUniqeInfo']);
 
     Route::apiResource('contents',ContentController::class);
 

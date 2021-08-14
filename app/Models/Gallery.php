@@ -16,10 +16,10 @@ class Gallery extends Model
         return $this->morphMany(Media::class, 'mediable');
     }
 
-    public function event()
+    public function cause()
     {
 
-        return $this->belongsTo(Event::class);
+        return $this->belongsTo(Cause::class);
 
     }
 

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Validator;
 
 class EventService
 {
-    protected $serviceRepository;
+    protected $eventRepository;
 
     public function __construct(EventRepository $eventRepository)
     {

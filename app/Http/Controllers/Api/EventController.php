@@ -7,7 +7,7 @@ use App\Services\EventService;
 use Illuminate\Http\Request;
 class EventController extends Controller
 {
-    protected $serviceService;
+    protected $eventService;
 
     public function __construct(EventService $eventService)
     {

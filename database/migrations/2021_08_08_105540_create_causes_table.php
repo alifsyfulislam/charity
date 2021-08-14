@@ -15,12 +15,14 @@ class CreateCausesTable extends Migration
     {
         Schema::create('causes', function (Blueprint $table) {
             $table->uuid('id')->primary()->unique();
-            $table->uuid('event_id');
+//            $table->uuid('event_id');
             $table->string('name')->index();
             $table->string('slug');
             $table->text('details')->nullable();
             $table->bigInteger('target_fund');
             $table->bigInteger('raised_fund');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->tinyInteger('status')->comment('0 => Inactive, 1 => Active');
             $table->timestamps();
         });

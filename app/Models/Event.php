@@ -16,15 +16,15 @@ class Event extends Model
         return $this->morphMany(Media::class, 'mediable');
     }
 
-    public function causes()
-    {
-        return $this->hasMany(Cause::class);
-    }
+//    public function causes()
+//    {
+//        return $this->hasMany(Cause::class);
+//    }
 
-    public function galleries()
-    {
-        return $this->hasMany(Gallery::class);
-    }
+//    public function galleries()
+//    {
+//        return $this->hasMany(Gallery::class);
+//    }
 
     public function contents()
     {

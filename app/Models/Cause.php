@@ -9,23 +9,34 @@ class Cause extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id','event_id','name','slug','details','status','target_fund','raised_fund'];
+    protected $fillable = ['id','event_id','name','slug','details','status','target_fund','raised_fund','start_date','end_date'];
 
     public function media()
     {
         return $this->morphMany(Media::class, 'mediable');
     }
 
-    public function event()
+
+    public function slider()
     {
-
-        return $this->belongsTo(Event::class);
-
+        return $this->hasOne(Slider::class,'cause_id');
     }
+
+//    public function event()
+//    {
+//
+//        return $this->belongsTo(Event::class);
+//
+//    }
 
     public function contents()
     {
         return $this->hasMany(Content::class,'link_id');
+    }
+
+    public function galleries()
+    {
+        return $this->hasMany(Gallery::class);
     }
 
     public function getCreatedAtAttribute($date)

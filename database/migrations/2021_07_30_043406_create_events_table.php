@@ -19,6 +19,8 @@ class CreateEventsTable extends Migration
             $table->string('slug');
             $table->string('location');
             $table->text('details')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->tinyInteger('status')->comment('0 => Inactive, 1 => Active');
             $table->timestamps();
         });
