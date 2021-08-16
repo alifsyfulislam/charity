@@ -20,7 +20,7 @@ a:active {
     color: #262626
 }
 a:focus {
-    outline: thin dotted
+    outline: 0
 }
 a:hover,
 a:active {
@@ -122,7 +122,7 @@ a:active {
     position: fixed;
     top: 0;
     left: -320px;
-    z-index: 9;
+    z-index: 999;
     width: 320px;
     max-width: calc(100% - 120px);
     height: 100%;
@@ -141,13 +141,14 @@ a:active {
 }
 .site-navigation ul li a {
     display: block;
-    padding: 16px 0;
+    padding: 15px 0;
     font-size: 14px;
     font-weight: 600;
     line-height: 1;
     color: #262626;
     text-decoration: none;
-    transition: color .35s
+    transition: color .35s;
+    border: none;
 }
 @media screen and (min-width: 992px) {
     .site-navigation ul {
@@ -169,6 +170,10 @@ a:active {
 .site-navigation ul li.current-menu-item a {
     border-bottom: 3px solid #ff5a00;
     color: #ff5a00
+}
+.site-navigation ul li a.btn:hover, .site-navigation ul li.current-menu-item a.btn {
+    border-bottom: none;
+    color: #ff5a00;
 }
 .header-bar-cart {
     margin-left: 40px
@@ -346,7 +351,7 @@ a:active {
     background: -ms-linear-gradient(180deg, rgba(255, 90, 0, 1) 0%, rgba(255, 54, 0, 1) 100%);
     background: linear-gradient(270deg, rgba(255, 90, 0, 1) 0%, rgba(255, 54, 0, 1) 100%);
     filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ff5a00', endColorstr='#ff3600', GradientType=1);
-    color: #fff
+    color: #fff!important;
 }
 .accordion-wrap {
     position: relative
@@ -488,14 +493,14 @@ ul.tabs-nav .tab-nav.active {
     color: #595858
 }
 .icon-box {
-    padding: 40px;
+    padding: 30px;
     border-radius: 24px;
-    background: #ecf2f5;
+    background: #ffffff;
     text-align: center;
-    transition: all .35s
+    transition: all .35s;
+    box-shadow: 0px 0px 8px 0px rgb(78 78 78 / 42%);
 }
-.icon-box:hover,
-.icon-box.active {
+.icon-box:hover {
     border: 0;
     background: -moz-linear-gradient(180deg, rgba(255, 90, 0, 1) 0%, rgba(255, 54, 0, 1) 100%);
     background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 90, 0, 1)), color-stop(100%, rgba(1255, 54, 0, 1)));
@@ -503,6 +508,12 @@ ul.tabs-nav .tab-nav.active {
     background: -o-linear-gradient(180deg, rgba(255, 90, 0, 1) 0%, rgba(255, 54, 0, 1) 100%);
     background: -ms-linear-gradient(180deg, rgba(255, 90, 0, 1) 0%, rgba(255, 54, 0, 1) 100%);
     background: linear-gradient(270deg, rgba(255, 90, 0, 1) 0%, rgba(255, 54, 0, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ff5a00', endColorstr='#ff3600', GradientType=1);
+    color: #fff
+}
+.icon-box.active {
+    border: 0;
+    background: white;
     filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ff5a00', endColorstr='#ff3600', GradientType=1);
     color: #fff
 }
@@ -641,8 +652,7 @@ ul.tabs-nav .tab-nav.active {
     padding-bottom: 24px;
     font-size: 36px;
     font-weight: 600;
-
-    margin: 0 23px;
+    margin: 0 3px;
 }
 .section-heading .entry-title::before {
     content: '';
@@ -660,7 +670,7 @@ ul.tabs-nav .tab-nav.active {
     }
 }
 .event-wrap {
-    margin-top: 40px
+    margin-top: 30px
 }
 .event-wrap figure {
     width: 144px;
@@ -722,7 +732,7 @@ ul.tabs-nav .tab-nav.active {
     margin-top: 50px
 }
 .featured-cause .cause-wrap {
-    padding: 40px 24px;
+    padding: 30px 24px;
     background: #edf3f5
 }
 .featured-cause .featured-cause .cause-wrap figure {
@@ -771,7 +781,7 @@ ul.tabs-nav .tab-nav.active {
     color: #929191
 }
 .cause-wrap .fund-raised {
-    margin-top: 64px
+    margin-top: 30px
 }
 .fund-raised-details {
     font-size: 14px;
@@ -784,7 +794,6 @@ ul.tabs-nav .tab-nav.active {
     background-size: cover;
     z-index: 99;
     background: white;
-    box-shadow: 0px 0 6px 2px rgb(28 28 28 / 64%);
 }
 .our-causes::after {
     content: '';
@@ -797,7 +806,7 @@ ul.tabs-nav .tab-nav.active {
     background: rgba(232, 237, 238, .8)
 }
 .our-causes .cause-wrap {
-    margin-top: 60px
+    margin-top: 30px
 }
 .our-causes .cause-wrap figure {
     position: relative
@@ -816,14 +825,14 @@ ul.tabs-nav .tab-nav.active {
     visibility: visible
 }
 .our-causes .cause-content-wrap {
-    padding: 32px;
+    padding:15px 30px 20px;
     background-color: #f5f8fb;
 }
 .our-causes .cause-content-wrap .entry-content {
-    margin-top: 20px
+    margin-top: 10px
 }
 .our-causes .cause-wrap .fund-raised {
-    margin-top: 48px
+    margin-top: 20px
 }
 .our-causes .swiper-button-next,
 .our-causes .swiper-button-prev {
@@ -1026,14 +1035,14 @@ ul.tabs-nav .tab-nav.active {
     color: #fff
 }
 .causes-page .page-header {
-    background: url(../images/xcauses-bg.jpg.pagespeed.ic.olR01M1RDs.jpg) no-repeat center
+    background: url(../../assets/images/xcauses-bg.jpg.pagespeed.ic.olR01M1RDs.jpg) no-repeat center
 }
 .causes-page .featured-cause {
-    padding: 96px 0
+    padding: 50px 0
 }
 .causes-page .our-causes {
     position: relative;
-    padding: 70px 0 96px;
+    padding: 0px 0 50px;
     background: none
 }
 .causes-page .our-causes .cause-wrap {
@@ -1212,7 +1221,7 @@ ul.tabs-nav .tab-nav.active {
     background: url(../images/xportfolio-bg.jpg.pagespeed.ic.tchhmLNxmt.jpg) no-repeat center
 }
 .portfolio-wrap {
-    padding: 96px 0
+    padding: 50px 0
 }
 .portfolio-wrap .mt-48 {
     margin-top: 45px
@@ -1221,7 +1230,7 @@ ul.tabs-nav .tab-nav.active {
     margin-top: 72px
 }
 .portfolio-wrap .portfolio-item {
-    display: none;
+    /*display: none;*/
     margin-bottom: 30px
 }
 .portfolio-wrap .portfolio-item.visible {
@@ -1567,12 +1576,12 @@ ul.tabs-nav .tab-nav.active {
 }
 .footer-widgets {
     position: relative;
-    padding: 96px 0 90px;
+    padding: 50px 0 50px;
     font-weight: 500;
     color: #929191;
     background: url(../images/xfoot-bg.jpg.pagespeed.ic.B8DN7MA4hg.jpg) no-repeat center;
     background-size: cover;
-    z-index: 99
+    z-index: 9
 }
 .footer-widgets::after {
     content: '';
@@ -1585,7 +1594,7 @@ ul.tabs-nav .tab-nav.active {
     background: rgba(22, 22, 22, .92)
 }
 .footer-widgets h2 {
-    margin-bottom: 40px;
+    margin-bottom: 25px;
     font-size: 18px;
     color: #fff
 }

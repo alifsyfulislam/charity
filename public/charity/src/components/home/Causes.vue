@@ -59,6 +59,22 @@
     }
 </script>
 
-<style scoped>
+<style >
+    .our-causes {
+        /*position: relative;*/
+        padding: 50px 0;
+        /*background: url(../images/xcause-bg.jpg.pagespeed.ic.0Gi-6Go72e.jpg) no-repeat center;*/
+        background-size: cover;
+        z-index: 99;
+        background: white;
+        box-shadow: 0px 0 6px 2px rgb(28 28 28 / 64%);
+    }
+    .our-causes .cause-content-wrap {
+        padding: 15px 30px 15px;
+         background-color: #ffffff;
+    }
 
+    .swiper-slide{
+        box-shadow: 0 10px 25px 0 rgb(104 110 117 / 15%);
+    }
 </style>

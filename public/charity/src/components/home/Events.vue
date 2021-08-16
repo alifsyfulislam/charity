@@ -61,7 +61,7 @@
 <style scoped>
     .event-content-wrap {
         padding: 0 30px;
-        height: 300px;
+        height: auto;
     }
     .event-wrap.d-flex.flex-wrap.justify-content-between {
         background: #fff;
@@ -78,7 +78,7 @@
         margin-top: 0;
     }
     header.entry-header.d-flex.flex-wrap.align-items-center {
-        margin: 15px 0;
+        margin: 10px 0;
     }
     .event_city {
         float: left;
@@ -115,6 +115,10 @@
         flex-direction: column;
         justify-content: right;
         text-align: right;
+        margin: 0;
+    }
+    .entry-footer {
+        margin-bottom: 15px;
     }
     .um-color_date {
         color: #F7796A;
@@ -135,6 +139,6 @@
     .event-wrap figure img {
         display: block;
         width: 100%;
-        height: 250px;
+        height: 200px;
     }
 </style>
