@@ -13,6 +13,32 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-8">
+                        <div class="row">
+                            <form action="" method="GET" class="row feature-event-form margin-b-big">
+                                <div class="col-md-4 form-border-right form-wraper" style="padding-left: 9px !important;">
+                                    <label class="form-label" for="usr">Event Name</label>
+                                    <input type="text" name="eventkeyword" required="" placeholder="All Events" value="" class="feature-event-date" id="usr">
+                                </div>
+                                <div class="col-md-4 form-border-right form-wraper">
+                                    <label class="form-label" for="usr">Location</label>
+                                    <input type="text" name="eventlocation" required="" placeholder="United Kingdom" value="" class="feature-event-date" id="usr">
+                                </div>
+
+                                <div class="col-md-4 form-wraper">
+                                    <label class="form-label" for="usr">Date</label>
+                                    <input type="date" name="eventdate" required="" placeholder="All dates" value="" class="feature-event-date" id="usr">
+                                </div>
+
+                                <input type="hidden" name="searchevent" value="data">
+                                <input style="display: none;" type="submit" name="eventsubmit" value="search" classname="submit-btn-event-slider">
+                            </form>
+                        </div>
+                        <div class="search-widget">
+                            <form class="flex flex-wrap align-items-center">
+                                <input type="search" placeholder="Search...">
+                                <button type="submit" class="flex justify-content-center align-items-center">GO</button>
+                            </form>
+                        </div>
                         <div class="news-content">
                             <a href="#"><img src="../assets/images/x1.jpg.pagespeed.ic.JEX-772_YT.jpg" alt=""></a>
                             <header class="entry-header d-flex flex-wrap justify-content-between align-items-center">
@@ -71,12 +97,7 @@
                     </div>
                     <div class="col-12 col-lg-4">
                         <div class="sidebar">
-                            <div class="search-widget">
-                                <form class="flex flex-wrap align-items-center">
-                                    <input type="search" placeholder="Search...">
-                                    <button type="submit" class="flex justify-content-center align-items-center">GO</button>
-                                </form>
-                            </div>
+
                             <div class="upcoming-events">
                                 <h2>Upcoming Events</h2>
                                 <ul class="p-0">
@@ -162,6 +183,59 @@
     }
 </script>
 
-<style scoped>
+<style >
+    .margin-b-big {
+        margin-bottom: 71px;
+    }
+    .feature-event-form {
+        background: #ffffff;
+        box-shadow: 0 6px 3px 0 rgb(151 154 158 / 48%);
+        border-radius: 0 5px 5px 5px;
+        padding: 24px 13px ;
+        margin-left: 0;
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        border: 12px solid #ff5800;
+    }
+    .form-border-right {
+        border-right: 4px solid rgb(255 86 0);
 
+    }
+    .form-wraper .form-label {
+        color: #9496B0;
+        font-size: 12px;
+        line-height: 18px;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        font-weight: 800;
+    }
+    .feature-event-form input {
+        text-indent: 10px;
+    }
+    .feature-event-date {
+        border: none;
+        background: transparent;
+        border-bottom: 1px solid #ff5800;
+        border-radius: 0;
+        color: #795548;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 35px;
+        padding: 0;
+        width: 100%;
+    }
+    input[type="date"]:after {
+        background-image: url(https://www.islamichelp.org.uk/wp-content/uploads/2020/04/datepicker.png);
+        font-weight: 900;
+        content: "";
+        color: #555;
+        padding: 0 5px;
+        background-repeat: no-repeat;
+        width: 14px;
+        font-weight: 900;
+        content: "";
+        padding: 0 5px;
+        height: 8px;
+    }
 </style>

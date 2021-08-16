@@ -23,6 +23,11 @@ const routes = [
         path: '/events',
         name: 'Events',
         component: () => import(/* webpackChunkName: "events" */ '../views/Events')
+    },
+    {
+        path: '/contact',
+        name: 'Contact',
+        component: () => import(/* webpackChunkName: "contact" */ '../views/Contact')
     }
 ]
 

@@ -33,7 +33,10 @@
                                             Events
                                         </router-link>
                                         </li>
-                                        <li><a href="#">Contact</a></li>
+                                        <li :class="menuSelection == 5 ? 'current-menu-item' : ''" @click="menuLiActive(5)">
+                                        <router-link :to="{ name: 'Contact'}">
+                                            Contact
+                                        </router-link></li>
                                         <li><a href="#" class="menu-btn btn gradient-bg-2 mr-2">Donate Now</a></li>
                                     </ul>
                                 </nav>
