@@ -13,81 +13,77 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-8">
-                        <div class="row">
-                            <form action="" method="GET" class="row feature-event-form margin-b-big">
+                        <div class="">
+                            <form action="" method="GET" class="row feature-event-form mb-5">
                                 <div class="col-md-4 form-border-right form-wraper" style="padding-left: 9px !important;">
                                     <label class="form-label" for="usr">Event Name</label>
                                     <input type="text" name="eventkeyword" required="" placeholder="All Events" value="" class="feature-event-date" id="usr">
                                 </div>
                                 <div class="col-md-4 form-border-right form-wraper">
                                     <label class="form-label" for="usr">Location</label>
-                                    <input type="text" name="eventlocation" required="" placeholder="United Kingdom" value="" class="feature-event-date" id="usr">
+                                    <input type="text" name="eventlocation" required="" placeholder="United Kingdom" value="" class="feature-event-date" >
                                 </div>
 
                                 <div class="col-md-4 form-wraper">
-                                    <label class="form-label" for="usr">Date</label>
-                                    <input type="date" name="eventdate" required="" placeholder="All dates" value="" class="feature-event-date" id="usr">
+                                    <label class="form-label" >Date</label>
+                                    <input type="date" name="eventdate" required="" placeholder="All dates" value="" class="feature-event-date" >
                                 </div>
 
-                                <input type="hidden" name="searchevent" value="data">
-                                <input style="display: none;" type="submit" name="eventsubmit" value="search" classname="submit-btn-event-slider">
-                            </form>
-                        </div>
-                        <div class="search-widget">
-                            <form class="flex flex-wrap align-items-center">
-                                <input type="search" placeholder="Search...">
-                                <button type="submit" class="flex justify-content-center align-items-center">GO</button>
-                            </form>
+                             </form>
                         </div>
                         <div class="news-content">
                             <a href="#"><img src="../assets/images/x1.jpg.pagespeed.ic.JEX-772_YT.jpg" alt=""></a>
-                            <header class="entry-header d-flex flex-wrap justify-content-between align-items-center">
-                                <div class="header-elements">
-                                    <div class="posted-date">March 12, 2018</div>
-                                    <h2 class="entry-title"><a href="#">Toys for Children Campaign</a></h2>
-                                    <div class="post-metas d-flex flex-wrap align-items-center">
-                                        <span class="cat-links">in <a href="#">Causes</a></span>
-                                        <span class="post-author">by <a href="#">Tom Phillips</a></span>
-                                        <span class="post-comments"><a href="#">3 Comments</a></span>
+                            <div class="p-4">
+                                <header class="entry-header d-flex flex-wrap justify-content-between align-items-center">
+                                    <div class="header-elements">
+                                        <div class="posted-date">March 12, 2018</div>
+                                        <h2 class="entry-title"><a href="#">Toys for Children Campaign</a></h2>
+                                        <div class="post-metas d-flex flex-wrap align-items-center">
+                                            <span class="cat-links">in <a href="#">Causes</a></span>
+                                            <span class="post-author">by <a href="#">Tom Phillips</a></span>
+                                            <span class="post-comments"><a href="#">3 Comments</a></span>
+                                        </div>
                                     </div>
+                                    <div class="donate-icon">
+                                        <a href="#"><img src="../assets/images/xdonate-icon.png.pagespeed.ic.5OLdXDGX0P.png" alt=""></a>
+                                    </div>
+                                </header>
+                                <div class="entry-content">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris. Lorem ipsum
+                                        dolor sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus
+                                        vestib ulum mauris quis aliquam. Integer accumsan sodales odio, id tempus velit ullamc.</p>
                                 </div>
-                                <div class="donate-icon">
-                                    <a href="#"><img src="../assets/images/xdonate-icon.png.pagespeed.ic.5OLdXDGX0P.png" alt=""></a>
-                                </div>
-                            </header>
-                            <div class="entry-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris. Lorem ipsum
-                                    dolor sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus
-                                    vestib ulum mauris quis aliquam. Integer accumsan sodales odio, id tempus velit ullamc.</p>
+                                <footer class="entry-footer">
+                                    <a href="#" class="btn gradient-bg">Read More</a>
+                                </footer>
                             </div>
-                            <footer class="entry-footer">
-                                <a href="#" class="btn gradient-bg">Read More</a>
-                            </footer>
                         </div>
                         <div class="news-content">
                             <a href="#"><img src="../assets/images/x2.jpg.pagespeed.ic.KAKS36sNgN.jpg" alt=""></a>
-                            <header class="entry-header d-flex flex-wrap justify-content-between align-items-center">
-                                <div class="header-elements">
-                                    <div class="posted-date">March 12, 2018</div>
-                                    <h2 class="entry-title"><a href="#">Toys for Children Campaign</a></h2>
-                                    <div class="post-metas d-flex flex-wrap align-items-center">
-                                        <span class="cat-links">in <a href="#">Causes</a></span>
-                                        <span class="post-author">by <a href="#">Tom Phillips</a></span>
-                                        <span class="post-comments"><a href="#">3 Comments</a></span>
+                            <div class="p-4">
+                                <header class="entry-header d-flex flex-wrap justify-content-between align-items-center">
+                                    <div class="header-elements">
+                                        <div class="posted-date">March 12, 2018</div>
+                                        <h2 class="entry-title"><a href="#">Toys for Children Campaign</a></h2>
+                                        <div class="post-metas d-flex flex-wrap align-items-center">
+                                            <span class="cat-links">in <a href="#">Causes</a></span>
+                                            <span class="post-author">by <a href="#">Tom Phillips</a></span>
+                                            <span class="post-comments"><a href="#">3 Comments</a></span>
+                                        </div>
                                     </div>
+                                    <div class="donate-icon">
+                                        <a href="#"><img src="../assets/images/xdonate-icon.png.pagespeed.ic.5OLdXDGX0P.png" alt=""></a>
+                                    </div>
+                                </header>
+                                <div class="entry-content">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris. Lorem ipsum
+                                        dolor sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus
+                                        vestib ulum mauris quis aliquam. Integer accumsan sodales odio, id tempus velit ullamc.</p>
                                 </div>
-                                <div class="donate-icon">
-                                    <a href="#"><img src="../assets/images/xdonate-icon.png.pagespeed.ic.5OLdXDGX0P.png" alt=""></a>
-                                </div>
-                            </header>
-                            <div class="entry-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris. Lorem ipsum
-                                    dolor sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus
-                                    vestib ulum mauris quis aliquam. Integer accumsan sodales odio, id tempus velit ullamc.</p>
+                                <footer class="entry-footer">
+                                    <a href="#" class="btn gradient-bg">Read More</a>
+                                </footer>
                             </div>
-                            <footer class="entry-footer">
-                                <a href="#" class="btn gradient-bg">Read More</a>
-                            </footer>
                         </div>
                         <ul class="pagination d-flex flex-wrap align-items-center p-0">
                             <li class="active"><a href="#">01</a></li>

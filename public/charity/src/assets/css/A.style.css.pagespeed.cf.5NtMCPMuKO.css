@@ -1266,7 +1266,10 @@ ul.tabs-nav .tab-nav.active {
     padding: 96px 0
 }
 .news-content {
-    margin-bottom: 64px
+    margin-bottom: 50px;
+    margin-top: 0;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 10px 25px 0 rgb(104 110 117 / 15%);
 }
 .news-content:nth-last-of-type(1) {
     margin-bottom: 0
@@ -1277,11 +1280,11 @@ ul.tabs-nav .tab-nav.active {
     margin: 0
 }
 .news-content .entry-header {
-    margin-top: 34px
+    margin-top: 3px
 }
 .news-content .entry-header .header-elements,
 .news-content .donate-icon {
-    margin-top: 30px
+    margin-top: 10px
 }
 .news-content .entry-title {
     font-size: 24px;
@@ -1316,12 +1319,12 @@ ul.tabs-nav .tab-nav.active {
     margin-right: 0
 }
 .news-content .entry-content {
-    margin-top: 32px;
+    margin-top: 30px;
     font-size: 14px;
     color: #929191
 }
 .news-content .entry-footer {
-    margin-top: 56px
+    margin-top: 30px
 }
 .pagination {
     margin-top: 92px
