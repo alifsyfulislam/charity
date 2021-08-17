@@ -26,7 +26,7 @@ use App\Http\Controllers\Api\SliderController;
 |
 */
 
-
+Route::get('slider-list',[SliderController::class,'index']);
 
 Route::middleware('auth:api')->group(function(){
 

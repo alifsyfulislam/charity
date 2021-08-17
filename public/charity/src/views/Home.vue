@@ -2,7 +2,7 @@
   <div class="home">
 
     <!--    slider-start-->
-    <Slider/>
+    <Slider v-if="sliders" :sliders="sliders"/>
     <!--    slider-end-->
 
     <!--    donation-start-->
@@ -38,6 +38,8 @@
   import Events from '../components/home/Events'
   import Service from '../components/home/Service'
 
+  import axios from 'axios'
+
 
   export default {
     name: 'Home',
@@ -48,6 +50,32 @@
       About,
       Events,
       Service
-    }
+    },
+    data (){
+      return{
+        sliders : ''
+      }
+    },
+    methods : {
+      getSliderList() {
+        let _that = this;
+        return axios.get(`/slider-list`, {
+          params : {
+            isVisitor :1
+          }
+        }).then((response) => {
+          _that.sliders = response.data.slider_list;
+          console.log(_that.sliders)
+        });
+      },
+      getB() {
+        console.log(3)
+      }
+    },
+    async created (){
+      await this.getSliderList()
+      console.log(2)
+      await this.getB()
+    },
   }
 </script>

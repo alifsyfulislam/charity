@@ -13,53 +13,19 @@
                                     `<i class='fas fa-chevron-right slider-icon' aria-hidden='true'></i>`,
                                 ]"
             >
-                <div
-                        class="carousel-item-slug"
-                        :style="{
-              backgroundImage:
-                'url(' + require('../../assets/images/xhero.jpg.pagespeed.ic.UlXoS3GVLR.jpg') + ')',
-            }"
-                >
+
+                <div v-if="sliderList" v-for="item in sliderList" :key="item.id" class="carousel-item-slug" :style='{ backgroundImage: `url(${item.media[0].url})` }'>
                     <div class="carousel-static">
                         <div class="hero-content-overlay position-absolute w-100 h-100">
                             <div class="container h-100">
                                 <div class="row h-100">
                                     <div class="col-12 col-lg-8 d-flex flex-column justify-content-center align-items-start">
                                         <header class="entry-header">
-                                            <h1>Donate</h1>
-                                            <h4>4 a better world</h4>
+                                            <h4>{{item.name}}</h4>
+<!--                                            <h4>4 a better world</h4>-->
                                         </header>
                                         <div class="entry-content mt-4">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestibulum mauris quis aliquam. Integer accumsan sodales odio, id tempus ullamcorper</p>
-                                        </div>
-                                        <footer class="entry-footer d-flex flex-wrap align-items-center mt-5">
-                                            <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
-                                            <a href="#" class="btn orange-border">Read More</a>
-                                        </footer>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div
-                        class="carousel-item-slug"
-                        :style="{
-              backgroundImage:
-                'url(' + require('../../assets/images/xhero.jpg.pagespeed.ic.UlXoS3GVLR.jpg') + ')',
-            }"
-                >
-                    <div class="carousel-static">
-                        <div class="hero-content-overlay position-absolute w-100 h-100">
-                            <div class="container h-100">
-                                <div class="row h-100">
-                                    <div class="col-12 col-lg-8 d-flex flex-column justify-content-center align-items-start">
-                                        <header class="entry-header">
-                                            <h1>Donate</h1>
-                                            <h4>4 a better world</h4>
-                                        </header>
-                                        <div class="entry-content mt-4">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestibulum mauris quis aliquam. Integer accumsan sodales odio, id tempus ullamcorper</p>
+                                            <p>{{item.details}}</p>
                                         </div>
                                         <footer class="entry-footer d-flex flex-wrap align-items-center mt-5">
                                             <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
@@ -81,15 +47,18 @@
     export default {
         name: "Slider",
 
+        props: ['sliders'],
+
         components:{
             carousel,
         },
 
         data(){
-          return{
-              slide: 0,
-              sliding: null
-          }
+            return{
+                slide: 0,
+                sliding: null,
+                sliderList : ''
+            }
         },
 
         methods : {
@@ -99,6 +68,12 @@
             onSlideEnd(slide) {
                 this.sliding = false
             }
+        },
+
+        created() {
+            let _that = this;
+            _that.sliderList = _that.sliders;
+            // console.log(_that.sliderList)
         }
     }
 </script>

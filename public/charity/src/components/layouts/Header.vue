@@ -8,7 +8,7 @@
                             <div class="col-12 d-flex flex-wrap justify-content-between align-items-center">
                                 <div class="site-branding d-flex align-items-center">
                                     <router-link class="d-block" :to="{ name: 'Home'}" rel="home">
-                                        <img class="d-block" src="../../assets/images/xfoot-logo.png.pagespeed.ic.QzKNgHQNJQ.png" alt="logo">
+                                        <img class="d-block" src="../../assets/images/xlogo.png.pagespeed.ic.jje9n1Rfdy.png" alt="logo">
                                     </router-link>
                                 </div>
                                 <nav class="site-navigation d-flex justify-content-end align-items-center" :class="menuSwitch ? 'show' : ''">
@@ -105,7 +105,7 @@
                 _that.menuSwitch = !_that.menuSwitch
             },
             menuLiActive(item){
-                console.log(item)
+                // console.log(item)
                 let _that = this;
                 _that.menuSelection = item
             }

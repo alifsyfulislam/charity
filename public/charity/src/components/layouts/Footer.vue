@@ -6,7 +6,7 @@
                     <div class="row">
                         <div class="col-12 col-md-6 col-lg-3">
                             <div class="foot-about">
-                                <h2><a class="foot-logo" href="#"><img src="../../assets/images/xfoot-logo.png.pagespeed.ic.QzKNgHQNJQ.png" alt=""></a></h2>
+                                <h2><a class="foot-logo" href="#"><img src="../../assets/images/xlogo.png.pagespeed.ic.jje9n1Rfdy.png" alt=""></a></h2>
                                 <p>Lorem ipsum dolor sit amet, con sectetur adipiscing elit. Mauris temp us vestib ulum mauris.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                 <ul class="d-flex flex-wrap align-items-center">
                                     <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>

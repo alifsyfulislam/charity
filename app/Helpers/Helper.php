@@ -86,13 +86,23 @@ class Helper
         return url($url.$filename);
     }
 
+//    public static function base64SliderImageStore($url, $image)
+//    {
+//        if (!file_exists(public_path($url))) {
+//            mkdir(public_path($url), 777, true);
+//        }
+//        $filename = date('Ymdhis')."-".strtolower(preg_replace("/[^a-zA-Z0-9.]+/", "-", $image->getClientOriginalName()));
+//        Image::make($image->getRealPath())->save($url.$filename);
+//        return url($url.$filename);
+//    }
+
     public static function base64SliderImageStore($url, $image)
     {
         if (!file_exists(public_path($url))) {
             mkdir(public_path($url), 777, true);
         }
         $filename = date('Ymdhis')."-".strtolower(preg_replace("/[^a-zA-Z0-9.]+/", "-", $image->getClientOriginalName()));
-        Image::make($image->getRealPath())->save($url.$filename);
+        Image::make($image->getRealPath())->resize(1200,500)->save($url.$filename);
         return url($url.$filename);
     }
 
