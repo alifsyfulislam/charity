@@ -12,12 +12,13 @@ class SliderRepository
     public function listing($request)
     {
         if ($request->filled('isVisitor')){
-//            return 'hi';
             return Slider::with('media','cause.media')
                 ->where('status','=',1)
                 ->orderBy('created_at','DESC')->take(5)->get();
         }else{
-            return Slider::with('media','cause.media')->orderBy('created_at','DESC')->paginate(15);
+            return Slider::with('media','cause.media')
+                ->orderBy('created_at','DESC')
+                ->paginate(15);
         }
 
     }

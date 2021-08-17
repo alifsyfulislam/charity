@@ -22,8 +22,16 @@ class CauseRepository
     public function listing($request)
     {
 
-        return Cause::with('media','contents','slider.media','galleries.media')->orderBy('created_at','DESC')->paginate(15);
+        if ($request->filled('isVisitor')){
+            return Cause::with('media','contents','slider.media','galleries.media')
+                ->where('status','=',1)
+                ->orderBy('created_at','DESC')->take(5)->get();
+        }else{
+            return Cause::with('media','contents','slider.media','galleries.media')
+                ->orderBy('created_at','DESC')
+                ->paginate(15);
 
+        }
     }
 
     public function show($id)
@@ -61,7 +69,9 @@ class CauseRepository
         $cause->slug               = $data['slug'];
         $cause->details            = $data['details'];
         $cause->target_fund        = $data['target_fund'];
-        $cause->raised_fund        += $data['raised_fund'];
+        if ($cause->raise_fund+$data['raised_fund'] <= $data['target_fund']){
+            $cause->raised_fund        += $data['raised_fund'];
+        }
         $cause->start_date         = $data['start_date'];
         $cause->end_date           = $data['end_date'];
         $cause->status             = $data['status'];

@@ -6,11 +6,11 @@
     <!--    slider-end-->
 
     <!--    donation-start-->
-    <DonationBox/>
+    <DonationBox v-if="causes" :causes="causes"/>
     <!--    donation-end-->
 
     <!--    causes-start-->
-    <Causes/>
+    <Causes v-if="causes" :causes="causes"/>
     <!--    causes-end-->
 
     <!--    about-start-->
@@ -53,13 +53,14 @@
     },
     data (){
       return{
-        sliders : ''
+        sliders     : '',
+        causes      : ''
       }
     },
     methods : {
       getSliderList() {
         let _that = this;
-        return axios.get(`/slider-list`, {
+        return axios.get(`slider-list`, {
           params : {
             isVisitor :1
           }
@@ -68,14 +69,21 @@
           console.log(_that.sliders)
         });
       },
-      getB() {
-        console.log(3)
+      getCauseList() {
+        let _that = this;
+        return axios.get(`cause-list`, {
+          params : {
+            isVisitor :1
+          }
+        }).then((response) => {
+          _that.causes = response.data.cause_list;
+          console.log(_that.causes)
+        });
       }
     },
     async created (){
       await this.getSliderList()
-      console.log(2)
-      await this.getB()
+      await this.getCauseList()
     },
   }
 </script>

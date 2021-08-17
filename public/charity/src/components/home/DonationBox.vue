@@ -7,15 +7,13 @@
 
             <div class="col-lg-3">
                 <label class="select mb-sm-0 mb-3">
-                    <select name="don[donation_id]" class="form-control quick-don-select">
-                        <option data-amount="" value="48958">Sadaqah</option>
-                        <option data-amount="" value="48959">Zakat</option>
-                        <option data-amount="" value="48960">General Donation</option>
-                        <option data-amount="6" value="49092">Fitrana (£6.00)</option>
-                        <option data-amount="50" value="148457">Food Pack (£50.00)</option>
-                        <option data-amount="25" value="155299">Eid Gift Packs (£25.00)</option>
-                        <option data-amount="2.5" value="155294">Iftar Meals (Per meal per person) (£2.50)</option>
-                        <option data-amount="5" value="155298">Kaffarah (Per person) (£5.00)</option>                                    </select>
+                    <vue-simple-suggest
+                            v-model="searchQuery"
+                            :list="simpleSuggestionList"
+                            :filter-by-query="true"
+                            max-suggestions="5"
+                    >
+                    </vue-simple-suggest>
                 </label>
             </div>
             <div class="col-lg-3">
@@ -32,8 +30,38 @@
 </template>
 
 <script>
+    import VueSimpleSuggest from 'vue-simple-suggest'
+    import 'vue-simple-suggest/dist/styles.css'
+
     export default {
-        name: "DonationBox"
+        name: "DonationBox",
+
+        props: ['causes'],
+
+        components:{
+            // Autocomplete
+            VueSimpleSuggest
+        },
+
+        data(){
+            return{
+                causeList       : '',
+                searchQuery     : ''
+            }
+        },
+
+        methods:{
+            simpleSuggestionList() {
+                let _that = this;
+                return _that.causeList.map(({name})=> name)
+            }
+        },
+
+        created() {
+            let _that = this;
+            _that.causeList = _that.causes
+            _that.simpleSuggestionList()
+        }
     }
 </script>
 

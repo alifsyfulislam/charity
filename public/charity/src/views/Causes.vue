@@ -104,7 +104,7 @@
                 </div>
             </div>
         </div>
-        <div class="our-causes ">
+        <div class="our-causes">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -159,7 +159,13 @@
 
 <script>
     export default {
-        name: "Causes"
+        name: "Causes",
+
+        data(){
+            return{
+
+            }
+        }
     }
 </script>
 
