@@ -26,8 +26,9 @@ use App\Http\Controllers\Api\SliderController;
 |
 */
 
-Route::get('slider-list',[SliderController::class,'index']);
-Route::get('cause-list',[CauseController::class,'index']);
+Route::get('slider-list',[SliderController::class,'index']);//5
+Route::get('cause-list',[CauseController::class,'index']);//6
+Route::get('about-list',[AboutController::class,'index']);//4
 
 Route::middleware('auth:api')->group(function(){
 

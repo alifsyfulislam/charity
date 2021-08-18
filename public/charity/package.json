@@ -18,7 +18,7 @@
     "vue-owl-carousel": "^2.0.3",
     "vue-router": "^3.2.0",
     "vue-scroll-fixed-navbar": "^0.2.2",
-    "vue-simple-suggest": "^1.11.1"
+    "vue-single-select": "^1.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

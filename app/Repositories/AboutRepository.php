@@ -11,7 +11,15 @@ class AboutRepository
     public function listing($request)
     {
 
-        return About::with('media')->orderBy('created_at','DESC')->paginate(15);
+        if ($request->filled('isVisitor')){
+            return About::with('media')
+                ->where('status','=',1)
+                ->orderBy('created_at','ASC')->take(4)->get();
+        }else{
+            return About::with('media')
+                ->orderBy('created_at','DESC')
+                ->paginate(15);
+        }
 
     }
 

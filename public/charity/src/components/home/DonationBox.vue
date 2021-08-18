@@ -5,33 +5,27 @@
             <div class="row quick-donation">
                 <div class="col-lg-3"><h3 class="bb-dashed clr-white fs20 mt-0 mb-3 pt-2">Quick Donate</h3></div>
 
-            <div class="col-lg-3">
-                <label class="select mb-sm-0 mb-3">
-                    <vue-simple-suggest
-                            v-model="searchQuery"
-                            :list="simpleSuggestionList"
-                            :filter-by-query="true"
-                            max-suggestions="5"
-                    >
-                    </vue-simple-suggest>
-                </label>
-            </div>
-            <div class="col-lg-3">
-                <div class="input_donation variable_amount currency mb-sm-0 mb-3">
-                    <input placeholder="Amount" autocomplete="off" type="text" class="donation_amount form-control mb-0" name="don[donation_amount]" value="">
+                <div class="col-lg-3">
+                    <vue-single-select
+                            v-model="searchNameQuery"
+                            :options="causeNameList"
+                    ></vue-single-select>
+                </div>
+                <div class="col-lg-3">
+                    <div class="input_donation variable_amount currency mb-sm-0 mb-3">
+                        <input placeholder="Amount" autocomplete="off" type="text" class="donation_amount form-control mb-0" name="don[donation_amount]" value="">
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <button type="submit" class="add-to-cart-donation theme-btn red">Donate Now</button>
                 </div>
             </div>
-            <div class="col-lg-3">
-                <button type="submit" class="add-to-cart-donation theme-btn red">Donate Now</button>
-            </div>
-        </div>
         </div>
     </div>
 </template>
 
 <script>
-    import VueSimpleSuggest from 'vue-simple-suggest'
-    import 'vue-simple-suggest/dist/styles.css'
+    import VueSingleSelect from "vue-single-select";
 
     export default {
         name: "DonationBox",
@@ -39,28 +33,31 @@
         props: ['causes'],
 
         components:{
-            // Autocomplete
-            VueSimpleSuggest
+            // VueSimpleSuggest
+            VueSingleSelect
         },
 
         data(){
             return{
-                causeList       : '',
-                searchQuery     : ''
+                causeList           : '',
+                searchNameQuery     : '',
+                causeNameList       : ''
             }
         },
 
         methods:{
-            simpleSuggestionList() {
+            autoSuggestionList() {
                 let _that = this;
-                return _that.causeList.map(({name})=> name)
+                _that.causeNameList = _that.causeList.map(({name})=> name);
+                console.log(_that.causeNameList)
+                // return _that.causeList.map(({name})=> name)
             }
         },
 
         created() {
             let _that = this;
             _that.causeList = _that.causes
-            _that.simpleSuggestionList()
+            _that.autoSuggestionList()
         }
     }
 </script>
@@ -187,7 +184,7 @@
         height: auto;
         margin-bottom: 10px;
     }
-     input[type=text] {
+    input[type=text] {
         width: 100%;
         border: 1px solid #ccc;
         border-radius: 2px;
@@ -196,12 +193,12 @@
         font-weight: 400;
         padding: 2px 5px;
         height: 25px;
-         font-family: 'Montserrat', sans-serif;
+        font-family: 'Montserrat', sans-serif;
     }
     .input_donation .donation_amount {
         padding-left: 18px;
     }
-     .donation_amount {
+    .donation_amount {
         border: 1px solid #ccc;
         border-radius: 2px;
         outline: 0;
@@ -212,7 +209,7 @@
         z-index: 9;
         position: relative;
         font-size: 16px;
-         font-family: 'Montserrat', sans-serif;
+        font-family: 'Montserrat', sans-serif;
     }
     .quick-donation .donation_amount, .quick-donation .form-control {
         height: 42px;
@@ -284,7 +281,7 @@
     }
     @media (max-width: 992px) {
         button.add-to-cart-donation.theme-btn.red {
-          margin-right: 0;
+            margin-right: 0;
         }
     }
 </style>

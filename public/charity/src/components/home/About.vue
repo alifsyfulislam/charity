@@ -13,38 +13,11 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="row inner-abt">
-                            <div class="col-sm-6">
+                            <div class="col-sm-6" v-for="item in aboutList" :key="item.id">
                                 <div class="inner-box-content"><a href=""></a>
                                     <i class="scape-basic-Video-Message wtbx_vc_icon"></i>
-                                    <h4>Our Story</h4>
-                                    <p>How our journey began</p>
-
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="inner-box-content"><a href="https://alkhair.org/about-us/"></a>
-                                    <i class="scape-tech-Global-Position wtbx_vc_icon"></i>
-                                    <h4>What we do</h4>
-                                    <p>Our global projects</p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row inner-abt">
-                            <div class="col-sm-6">
-                                <div class="inner-box-content"><a href="#"></a>
-                                    <i class="scape-tech-Distance-2 wtbx_vc_icon"></i>
-                                    <h4>Vision &amp; Mission</h4>
-                                    <p>The words we live by</p>
-
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="inner-box-content"><a href="#"></a>
-                                    <i class="scape-tech-Inbox-Letter wtbx_vc_icon"></i>
-                                    <h4>Who We Are</h4>
-                                    <p>AKF through the years</p>
-
+                                    <h4>{{item.name}}</h4>
+                                    <p>{{item.details}}</p>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +30,23 @@
 
 <script>
     export default {
-        name: "About"
+        name: "About",
+        props: ['abouts'],
+        components:{
+
+        },
+        data(){
+            return{
+                aboutList       : ''
+            }
+        },
+        methods:{
+
+        },
+        created() {
+            let _that = this;
+            _that.aboutList = _that.abouts
+        }
     }
 </script>
 

@@ -1,29 +1,33 @@
 <template>
   <div class="home">
 
-    <!--    slider-start-->
-    <Slider v-if="sliders" :sliders="sliders"/>
-    <!--    slider-end-->
+    <PreLoader v-if="isLoading"/>
 
-    <!--    donation-start-->
-    <DonationBox v-if="causes" :causes="causes"/>
-    <!--    donation-end-->
+    <div v-else>
+      <!--    slider-start-->
+      <Slider v-if="sliders" :sliders="sliders"/>
+      <!--    slider-end-->
 
-    <!--    causes-start-->
-    <Causes v-if="causes" :causes="causes"/>
-    <!--    causes-end-->
+      <!--    donation-start-->
+      <DonationBox v-if="causes" :causes="causes"/>
+      <!--    donation-end-->
 
-    <!--    about-start-->
-    <About/>
-    <!--    about-end-->
+      <!--    causes-start-->
+      <Causes v-if="causes" :causes="causes"/>
+      <!--    causes-end-->
 
-    <!--    events-start-->
-    <Events/>
-    <!--    events-end-->
+      <!--    about-start-->
+      <About v-if="abouts" :abouts="abouts"/>
+      <!--    about-end-->
 
-    <!--    service-start-->
-    <Service/>
-    <!--    service-start-->
+      <!--    events-start-->
+      <Events/>
+      <!--    events-end-->
+
+      <!--    service-start-->
+      <Service/>
+      <!--    service-start-->
+    </div>
 
 
   </div>
@@ -37,6 +41,7 @@
   import About from '../components/home/About'
   import Events from '../components/home/Events'
   import Service from '../components/home/Service'
+  import PreLoader from '../components/layouts/PreLoader'
 
   import axios from 'axios'
 
@@ -44,6 +49,7 @@
   export default {
     name: 'Home',
     components : {
+      PreLoader,
       Slider,
       DonationBox,
       Causes,
@@ -53,8 +59,10 @@
     },
     data (){
       return{
+        isLoading   : true,
         sliders     : '',
-        causes      : ''
+        causes      : '',
+        abouts      : ''
       }
     },
     methods : {
@@ -76,14 +84,28 @@
             isVisitor :1
           }
         }).then((response) => {
+          _that.isLoading = false;
           _that.causes = response.data.cause_list;
           console.log(_that.causes)
+        });
+      },
+
+      getAboutList() {
+        let _that = this;
+        return axios.get(`about-list`, {
+          params : {
+            isVisitor :1
+          }
+        }).then((response) => {
+          _that.abouts = response.data.about_list;
+          console.log(_that.abouts)
         });
       }
     },
     async created (){
       await this.getSliderList()
       await this.getCauseList()
+      await this.getAboutList()
     },
   }
 </script>
