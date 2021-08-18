@@ -741,7 +741,8 @@ ul.tabs-nav .tab-nav.active {
 }
 .cause-wrap figure img {
     display: block;
-    width: 100%
+    width: 100%;
+    height: 275px;
 }
 .featured-cause .cause-content-wrap {
     width: calc(100% - 280px)
@@ -939,6 +940,9 @@ ul.tabs-nav .tab-nav.active {
     color: #262626
 }
 @media screen and (max-width: 992px) {
+    span.select2.select2-container.select2-container--default {
+        margin-bottom: 20px;
+    }
     .about-page .welcome-content .entry-title {
         margin-top: 60px
     }

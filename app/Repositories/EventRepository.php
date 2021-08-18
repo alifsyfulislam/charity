@@ -10,8 +10,13 @@ class EventRepository
 {
     public function listing($request)
     {
-
-        return Event::with('media','contents')->orderBy('created_at','DESC')->paginate(15);
+        if ($request->filled('isVisitor')){
+            return Event::with('media','contents')
+                ->orderBy('created_at','DESC')
+                ->take(3)->get();
+        }else{
+            return Event::with('media','contents')->orderBy('created_at','DESC')->paginate(15);
+        }
 
     }
 

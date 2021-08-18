@@ -25,8 +25,13 @@ class CauseRepository
         if ($request->filled('isVisitor')){
             return Cause::with('media','contents','slider.media','galleries.media')
                 ->where('status','=',1)
-                ->orderBy('created_at','DESC')->take(5)->get();
-        }else{
+                ->orderBy('created_at','DESC')->take(6)->get();
+        }elseif ($request->filled('isAccess') && $request->filled('isVisitor')){
+            return Cause::with('media','contents','slider.media','galleries.media')
+                ->where('status','=',1)
+                ->orderBy('created_at','DESC')->get('name');
+        }
+        else{
             return Cause::with('media','contents','slider.media','galleries.media')
                 ->orderBy('created_at','DESC')
                 ->paginate(15);

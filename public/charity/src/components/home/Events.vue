@@ -9,23 +9,23 @@
                                 <h2 class="entry-title">Upcoming Events</h2>
                             </div>
                             <div class="row">
-                                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-12" v-for="item in eventList" :key="item.id">
                                     <div class="event-wrap d-flex flex-wrap justify-content-between">
                                             <figure class="m-0">
-                                                <img src="../../assets/images/xevent-1.jpg.pagespeed.ic.26MJsWIQIP.jpg" alt="">
+                                                <img :src="item.media ? item.media[0].url : ''" alt="">
                                             </figure>
                                             <div class="event-content-wrap">
                                                 <header class="entry-header d-flex flex-wrap align-items-center">
-                                                    <h3 class="entry-title w-100 m-0"><a href="#">Fundraiser for Kids</a></h3>
+                                                    <h3 class="entry-title w-100 m-0"><a href="#">{{item.name}}</a></h3>
                                                     <div class="posted-date">
-                                                        <a href="#">Aug 25, 2018 </a>
+                                                        <a href="#">{{item.created_at}} </a>
                                                     </div>
                                                     <div class="cats-links">
-                                                        <a href="#">Ball Room New York</a>
+                                                        <a href="#">{{item.location}}</a>
                                                     </div>
                                                 </header>
                                                 <div class="entry-content">
-                                                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                                    <p class="m-0">{{item.details}}</p>
                                                 </div>
                                                 <div class=" event_city">
                                                     <span class="city-btn-light">
@@ -35,7 +35,7 @@
                                                 </div>
                                                 <p class="feature-date normal-text mb-small_event eventdate">
                                                     <span class=" um-color_date">Aug</span>
-                                                    <span class="feature-date-text text-black_event">18</span>
+                                                    <span class="feature-date-text text-black_event">{{item.start_date.slice(-2)}}</span>
                                                 </p>
                                                 <div class="entry-footer">
                                                     <a href="#">Read More</a>
@@ -54,7 +54,20 @@
 
 <script>
     export default {
-        name: "Events"
+        name: "Events",
+
+        props:['events'],
+
+        data(){
+            return{
+                eventList : ''
+            }
+        },
+
+        created() {
+            let _that = this;
+            _that.eventList = _that.events;
+        }
     }
 </script>
 

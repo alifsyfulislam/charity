@@ -4,12 +4,23 @@
         <div class="container">
             <div class="row quick-donation">
                 <div class="col-lg-3"><h3 class="bb-dashed clr-white fs20 mt-0 mb-3 pt-2">Quick Donate</h3></div>
-
+<!--                option-key="id"-->
                 <div class="col-lg-3">
-                    <vue-single-select
-                            v-model="searchNameQuery"
-                            :options="causeNameList"
-                    ></vue-single-select>
+<!--                    <vue-single-select-->
+<!--                            v-model="searchNameQuery"-->
+<!--                            :options="causeNameList"-->
+<!--                            option-label="name"-->
+<!--                            :max-results="10"-->
+<!--                            :value="searchNameQuery"-->
+<!--                    ></vue-single-select>-->
+                    <Select2 v-model="searchNameQuery"
+                             :options="causeNameList"
+                             :settings="{ settingOption: searchNameQuery, settingOption: searchNameQuery }"
+                             @change="myChangeEvent($event)"
+                             @select="mySelectEvent($event)"
+                    />
+
+
                 </div>
                 <div class="col-lg-3">
                     <div class="input_donation variable_amount currency mb-sm-0 mb-3">
@@ -25,7 +36,10 @@
 </template>
 
 <script>
-    import VueSingleSelect from "vue-single-select";
+    // import VueSingleSelect from "vue-single-select";
+    import Select2 from 'v-select2-component';
+
+    import axios from 'axios'
 
     export default {
         name: "DonationBox",
@@ -33,8 +47,8 @@
         props: ['causes'],
 
         components:{
-            // VueSimpleSuggest
-            VueSingleSelect
+            // VueSingleSelect,
+            Select2
         },
 
         data(){
@@ -48,21 +62,67 @@
         methods:{
             autoSuggestionList() {
                 let _that = this;
-                _that.causeNameList = _that.causeList.map(({name})=> name);
-                console.log(_that.causeNameList)
+                console.log(_that.searchNameQuery)
+                _that.causeNameList = _that.causeList.map(({id,name})=> {
+                    return {
+                        id,
+                        text : name
+                    }
+                });
                 // return _that.causeList.map(({name})=> name)
+            },
+            getCauseList() {
+                let _that = this;
+                return axios.get(`cause-list`, {
+                    params : {
+                        isVisitor : 1,
+                        isAccess : 1
+                    }
+                }).then((response) => {
+                    _that.isLoading = false;
+                    _that.causeList = response.data.cause_list;
+                    console.log(_that.causes)
+                });
+            },
+            myChangeEvent(val){
+                console.log(val);
+            },
+            mySelectEvent({id, text}){
+                console.log({id, text})
             }
+
         },
 
         created() {
             let _that = this;
             _that.causeList = _that.causes
-            _that.autoSuggestionList()
+            _that.autoSuggestionList();
+            _that.getCauseList();
         }
     }
 </script>
 
-<style scoped>
+<style >
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 40px;
+        position: absolute;
+        top: 0px;
+        right: 1px;
+        width: 20px;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        color: #444;
+        line-height: 42px!important;
+    }
+    span.select2.select2-container.select2-container--default {
+        width: 100% !important;
+    }
+    span.select2.select2-container.select2-container--default.select2-container--above.select2-container--focus {
+        width: 100% !important;
+    }
+    span.select2-selection.select2-selection--single {
+        height: 42px;
+    }
     .donate-box {
         background-color: #f5f8fb;
         padding: 50px 0;

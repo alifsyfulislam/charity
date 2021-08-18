@@ -21,11 +21,11 @@
       <!--    about-end-->
 
       <!--    events-start-->
-      <Events/>
+      <Events v-if="events" :events="events"/>
       <!--    events-end-->
 
       <!--    service-start-->
-      <Service/>
+      <Service v-if="services" :services="services"/>
       <!--    service-start-->
     </div>
 
@@ -62,7 +62,9 @@
         isLoading   : true,
         sliders     : '',
         causes      : '',
-        abouts      : ''
+        abouts      : '',
+        events      : '',
+        services    : ''
       }
     },
     methods : {
@@ -74,19 +76,19 @@
           }
         }).then((response) => {
           _that.sliders = response.data.slider_list;
-          console.log(_that.sliders)
+          // console.log(_that.sliders)
         });
       },
       getCauseList() {
         let _that = this;
         return axios.get(`cause-list`, {
           params : {
-            isVisitor :1
+            isVisitor : 1
           }
         }).then((response) => {
           _that.isLoading = false;
           _that.causes = response.data.cause_list;
-          console.log(_that.causes)
+          // console.log(_that.causes)
         });
       },
 
@@ -98,14 +100,40 @@
           }
         }).then((response) => {
           _that.abouts = response.data.about_list;
-          console.log(_that.abouts)
+          // console.log(_that.abouts)
         });
-      }
+      },
+
+      getEventList() {
+        let _that = this;
+        return axios.get(`event-list`, {
+          params : {
+            isVisitor : 1
+          }
+        }).then((response) => {
+          _that.events = response.data.event_list;
+          console.log(_that.events)
+        });
+      },
+
+      getServiceList() {
+        let _that = this;
+        return axios.get(`service-list`, {
+          params : {
+            isVisitor : 1
+          }
+        }).then((response) => {
+          _that.services = response.data.service_list;
+          // console.log(_that.services)
+        });
+      },
     },
     async created (){
       await this.getSliderList()
       await this.getCauseList()
       await this.getAboutList()
+      await this.getEventList()
+      await this.getServiceList()
     },
   }
 </script>
