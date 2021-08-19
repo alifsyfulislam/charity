@@ -7,27 +7,42 @@ const routes = [
     {
         path: '/',
         name: 'Home',
-        component: () => import(/* webpackChunkName: "home" */ '../views/Home')
+        component: () => import(/* webpackChunkName: "home" */ '../views/Home'),
+        meta:{
+            title : 'Charity'
+        }
     },
     {
         path: '/causes',
         name: 'Causes',
-        component: () => import(/* webpackChunkName: "causes" */ '../views/Causes')
+        component: () => import(/* webpackChunkName: "causes" */ '../views/Causes'),
+        meta:{
+            title : 'Causes'
+        }
     },
     {
         path: '/gallery',
         name: 'Gallery',
-        component: () => import(/* webpackChunkName: "gallery" */ '../views/Gallery')
+        component: () => import(/* webpackChunkName: "gallery" */ '../views/Gallery'),
+        meta:{
+            title : 'Gallery'
+        }
     },
     {
         path: '/events',
         name: 'Events',
-        component: () => import(/* webpackChunkName: "events" */ '../views/Events')
+        component: () => import(/* webpackChunkName: "events" */ '../views/Events'),
+        meta:{
+            title : 'Events'
+        }
     },
     {
         path: '/contact',
         name: 'Contact',
         component: () => import(/* webpackChunkName: "contact" */ '../views/Contact')
+        meta:{
+            title : 'Events'
+        }
     }
 ]
 
