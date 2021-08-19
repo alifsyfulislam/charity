@@ -39,9 +39,9 @@ const routes = [
     {
         path: '/contact',
         name: 'Contact',
-        component: () => import(/* webpackChunkName: "contact" */ '../views/Contact')
+        component: () => import(/* webpackChunkName: "contact" */ '../views/Contact'),
         meta:{
-            title : 'Events'
+            title : 'Contact'
         }
     }
 ]
