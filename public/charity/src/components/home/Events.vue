@@ -35,7 +35,7 @@
                                                 </div>
                                                 <p class="feature-date normal-text mb-small_event eventdate">
                                                     <span class=" um-color_date">Aug</span>
-                                                    <span class="feature-date-text text-black_event">{{item.start_date.slice(-2)}}</span>
+                                                    <span class="feature-date-text text-black_event">{{item.start_date ? item.start_date.slice(-2):''}}</span>
                                                 </p>
                                                 <div class="entry-footer">
                                                     <a href="#">Read More</a>
