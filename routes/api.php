@@ -27,7 +27,7 @@ use App\Http\Controllers\Api\SliderController;
 */
 
 Route::get('slider-list',[SliderController::class,'index']);//5
-Route::get('cause-list',[CauseController::class,'index']);//6
+Route::get('cause-list',[CauseController::class,'index']);//5
 Route::get('about-list',[AboutController::class,'index']);//4
 Route::get('event-list',[EventController::class,'index']);//3
 Route::get('service-list',[ServiceController::class,'index']);//3

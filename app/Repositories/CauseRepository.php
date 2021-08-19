@@ -23,13 +23,20 @@ class CauseRepository
     {
 
         if ($request->filled('isVisitor')){
-            return Cause::with('media','contents','slider.media','galleries.media')
+            return Cause::with('media')
                 ->where('status','=',1)
-                ->orderBy('created_at','DESC')->take(6)->get();
-        }elseif ($request->filled('isAccess') && $request->filled('isVisitor')){
-            return Cause::with('media','contents','slider.media','galleries.media')
+                ->orderBy('created_at','DESC')
+                ->take(5)
+                ->get();
+        }else if ($request->filled('isSuggestion')){
+            return Cause::where('status','=',1)
+                ->orderBy('created_at','DESC')->get(['id', 'name']);
+        }
+        else if ($request->filled('isPaginate')){
+            return Cause::with('media')
                 ->where('status','=',1)
-                ->orderBy('created_at','DESC')->get('name');
+                ->orderBy('created_at','DESC')
+                ->paginate(1);
         }
         else{
             return Cause::with('media','contents','slider.media','galleries.media')
@@ -61,6 +68,7 @@ class CauseRepository
         $cause->start_date         = $data['start_date'];
         $cause->end_date           = $data['end_date'];
         $cause->status             = $data['status'];
+        $cause->featured_status    = $data['featured_status'];
         $cause->save();
         return $cause;
     }
@@ -80,6 +88,7 @@ class CauseRepository
         $cause->start_date         = $data['start_date'];
         $cause->end_date           = $data['end_date'];
         $cause->status             = $data['status'];
+        $cause->featured_status    = $data['featured_status'];
         if (isset($cause->slider)){
             $this->sliderRepository->changeItemStatus($data, $cause->slider->id);
         }

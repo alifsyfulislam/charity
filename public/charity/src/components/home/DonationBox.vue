@@ -75,8 +75,7 @@
                 let _that = this;
                 return axios.get(`cause-list`, {
                     params : {
-                        isVisitor : 1,
-                        isAccess : 1
+                        isSuggestion : 1
                     }
                 }).then((response) => {
                     _that.isLoading = false;

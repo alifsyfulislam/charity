@@ -9,7 +9,7 @@ class Cause extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id','event_id','name','slug','details','status','target_fund','raised_fund','start_date','end_date'];
+    protected $fillable = ['id','featured_status','event_id','name','slug','details','status','target_fund','raised_fund','start_date','end_date'];
 
     public function media()
     {
