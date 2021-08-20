@@ -11,11 +11,18 @@ class EventRepository
     public function listing($request)
     {
         if ($request->filled('isVisitor')){
-            return Event::with('media','contents')
+            return Event::with('media')
                 ->orderBy('created_at','DESC')
                 ->take(3)->get();
-        }else{
-            return Event::with('media','contents')->orderBy('created_at','DESC')->paginate(15);
+        }elseif ($request->filled('isPaginate')){
+            return Event::with('media')
+                ->orderBy('created_at','DESC')
+                ->paginate(3);
+        }
+        else{
+            return Event::with('media','contents')
+                ->orderBy('created_at','DESC')
+                ->paginate(15);
         }
 
     }

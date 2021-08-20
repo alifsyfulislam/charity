@@ -9,139 +9,21 @@
                 </div>
             </div>
         </div>
-        <div class="portfolio-wrap">
+        <PreLoader v-if="isLoading"/>
+        <div v-else class="portfolio-wrap">
             <div class="container">
                 <div class="row portfolio-container">
-                    <div class="col-12 col-md-6 col-lg-4 portfolio-item">
+                    <div class="col-12 col-md-6 col-lg-4 portfolio-item" v-for="item in galleries" :key="item.id">
                         <div class="portfolio-cont">
-                            <a href="#"><img src="../assets/images/xa.jpg.pagespeed.ic.Aqyj5othGv.jpg" alt=""></a>
-                            <h3 class="entry-title"><a href="#">Toys for Children Campaign</a></h3>
-                            <h4>2018 Causes</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3 portfolio-item">
-                        <div class="portfolio-cont">
-                            <a href="#"><img src="../assets/images/xb.jpg.pagespeed.ic.Z5P4rdsGv3.jpg" alt=""></a>
-                            <h3 class="entry-title"><a href="#">Toys for Children Campaign</a></h3>
-                            <h4>2018 Causes</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-5 portfolio-item">
-                        <div class="portfolio-cont">
-                            <a href="#"><img src="../assets/images/c.jpg" alt=""></a>
-                            <h3 class="entry-title"><a href="#">Water for Children AID</a></h3>
-                            <h4>2018 Causes</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-5 portfolio-item">
-                        <div class="portfolio-cont">
-                            <a href="#"><img src="../assets/images/xd.jpg.pagespeed.ic.glpagN4Duq.jpg" alt=""></a>
-                            <h3 class="entry-title"><a href="#">Water for Children AID</a></h3>
-                            <h4>2018 Causes</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3 mt-48 portfolio-item">
-                        <div class="portfolio-cont">
-                            <a href="#"><img src="../assets/images/xe.jpg.pagespeed.ic.EHhHqVO0zz.jpg" alt=""></a>
-                            <h3 class="entry-title"><a href="#">Toys for Children Campaign</a></h3>
-                            <h4>2018 Causes</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 mt-48 portfolio-item">
-                        <div class="portfolio-cont">
-                            <a href="#"><img src="../assets/images/xf.jpg.pagespeed.ic.cqdB-gcv5s.jpg" alt=""></a>
-                            <h3 class="entry-title"><a href="#">Toys for Children Campaign</a></h3>
-                            <h4>2018 Causes</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3 mt-72 portfolio-item">
-                        <div class="portfolio-cont">
-                            <a href="#"><img src="../assets/images/xg.jpg.pagespeed.ic.6iGZAqSSjW.jpg" alt=""></a>
-                            <h3 class="entry-title"><a href="#">Toys for Children Campaign</a></h3>
-                            <h4>2018 Causes</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-6 mt-72 portfolio-item">
-                        <div class="portfolio-cont">
-                            <a href="#"><img src="../assets/images/xh.jpg.pagespeed.ic.q5UIBycat5.jpg" alt=""></a>
-                            <h3 class="entry-title"><a href="#">Water for Children AI</a>D</h3>
-                            <h4>2018 Causes</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3 mt-72 portfolio-item">
-                        <div class="portfolio-cont">
-                            <a href="#"><img src="../assets/images/xi.jpg.pagespeed.ic.HemWiBWptV.jpg" alt=""></a>
-                            <h3 class="entry-title"><a href="#">Toys for Children Campaign</a></h3>
-                            <h4>2018 Causes</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 portfolio-item">
-                        <div class="portfolio-cont">
-                            <a href="#"><img src="../assets/images/xa.jpg.pagespeed.ic.Aqyj5othGv.jpg" alt=""></a>
-                            <h3 class="entry-title"><a href="#">Toys for Children Campaign</a></h3>
-                            <h4>2018 Causes</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3 portfolio-item">
-                        <div class="portfolio-cont">
-                            <a href="#"><img src="../assets/images/xb.jpg.pagespeed.ic.Z5P4rdsGv3.jpg" alt=""></a>
-                            <h3 class="entry-title"><a href="#">Toys for Children Campaign</a></h3>
-                            <h4>2018 Causes</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-5 portfolio-item">
-                        <div class="portfolio-cont">
-                            <a href="#"><img src="../assets/images/c.jpg" alt=""></a>
-                            <h3 class="entry-title"><a href="#">Water for Children AID</a></h3>
-                            <h4>2018 Causes</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-5 portfolio-item">
-                        <div class="portfolio-cont">
-                            <a href="#"><img src="../assets/images/xd.jpg.pagespeed.ic.glpagN4Duq.jpg" alt=""></a>
-                            <h3 class="entry-title"><a href="#">Water for Children AID</a></h3>
-                            <h4>2018 Causes</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3 mt-48 portfolio-item">
-                        <div class="portfolio-cont">
-                            <a href="#"><img src="../assets/images/xe.jpg.pagespeed.ic.EHhHqVO0zz.jpg" alt=""></a>
-                            <h3 class="entry-title"><a href="#">Toys for Children Campaign</a></h3>
-                            <h4>2018 Causes</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 mt-48 portfolio-item">
-                        <div class="portfolio-cont">
-                            <a href="#"><img src="../assets/images/xf.jpg.pagespeed.ic.cqdB-gcv5s.jpg" alt=""></a>
-                            <h3 class="entry-title"><a href="#">Toys for Children Campaign</a></h3>
-                            <h4>2018 Causes</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3 mt-72 portfolio-item">
-                        <div class="portfolio-cont">
-                            <a href="#"><img src="../assets/images/xg.jpg.pagespeed.ic.6iGZAqSSjW.jpg" alt=""></a>
-                            <h3 class="entry-title"><a href="#">Toys for Children Campaign</a></h3>
-                            <h4>2018 Causes</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-6 mt-72 portfolio-item">
-                        <div class="portfolio-cont">
-                            <a href="#"><img src="../assets/images/xh.jpg.pagespeed.ic.q5UIBycat5.jpg" alt=""></a>
-                            <h3 class="entry-title"><a href="#">Water for Children AI</a>D</h3>
-                            <h4>2018 Causes</h4>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3 mt-72 portfolio-item">
-                        <div class="portfolio-cont">
-                            <a href="#"><img src="../assets/images/xi.jpg.pagespeed.ic.HemWiBWptV.jpg" alt=""></a>
-                            <h3 class="entry-title"><a href="#">Toys for Children Campaign</a></h3>
-                            <h4>2018 Causes</h4>
+                            <a href="#"><img :src="item.media ? item.media[0].url : ''" alt=""></a>
+                            <h3 class="entry-title"><a href="#">{{item.name}}</a></h3>
+                            <h4>{{item.created_at}}</h4>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 d-flex justify-content-center mt-72">
-                        <a href="#" class="btn gradient-bg load-more-btn">Load More</a>
+                    <div class="col-12 d-flex justify-content-center mt-50">
+                        <button href="#" :class="visibleItem > 8? 'hide' : 'show'" class="btn gradient-bg load-more-btn" @click="getMoreGalleryItem">Load More</button>
                     </div>
                 </div>
             </div>
@@ -150,11 +32,61 @@
 </template>
 
 <script>
+    import PreLoader from '../components/layouts/PreLoader'
+    import axios from 'axios'
     export default {
-        name: "Gallery"
+        name: "Gallery",
+
+        components:{
+            PreLoader
+        },
+
+        data(){
+            return{
+                isLoading : true,
+                visibleItem : 0,
+                galleries : ''
+            }
+        },
+
+        methods:{
+            getGelleryList() {
+                let _that = this;
+                _that.visibleItem +=3 ;
+                return axios.get(`gallery-list`, {
+                    params : {
+                        isVisibleItem : _that.visibleItem,
+                    }
+                }).then((response) => {
+                    _that.isLoading = false;
+                    _that.galleries = response.data.gallery_list;
+                });
+            },
+            getMoreGalleryItem(){
+                let _that = this;
+                _that.visibleItem +=3 ;
+                return axios.get(`gallery-list`, {
+                    params : {
+                        isVisibleItem : _that.visibleItem,
+                    }
+                }).then((response) => {
+                    _that.galleries = response.data.gallery_list;
+                });
+            }
+        },
+
+        async created() {
+            await this.getGelleryList()
+        }
     }
 </script>
 
 <style scoped>
+    .hide{
+        display: none;
+    }
 
+    .show{
+        display: block;
+    }
 </style>

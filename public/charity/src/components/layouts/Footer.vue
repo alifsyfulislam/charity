@@ -9,11 +9,8 @@
                                 <h2><a class="foot-logo" href="#"><img src="../../assets/images/xlogo.png.pagespeed.ic.jje9n1Rfdy.png" alt=""></a></h2>
                                 <p>Lorem ipsum dolor sit amet, con sectetur adipiscing elit. Mauris temp us vestib ulum mauris.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                                 <ul class="d-flex flex-wrap align-items-center">
-                                    <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
                                     <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                                 </ul>
                             </div>
@@ -50,12 +47,6 @@
                                     <li><i class="fa fa-envelope"></i><span><a href="https://preview.colorlib.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a9c6cfcfc0cacce9ddccc4d9c5c8ddcc87cac6c4">[email&#160;protected]</a></span></li>
                                     <li><i class="fa fa-map-marker"></i><span>Main Str. no 45-46, b3, 56832, Los Angeles, CA</span></li>
                                 </ul>
-                            </div>
-                            <div class="subscribe-form">
-                                <form class="d-flex flex-wrap align-items-center">
-                                    <input type="email" placeholder="Your email">
-                                    <input type="submit" value="send">
-                                </form>
                             </div>
                         </div>
                     </div>

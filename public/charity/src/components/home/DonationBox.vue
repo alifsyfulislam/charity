@@ -62,7 +62,6 @@
         methods:{
             autoSuggestionList() {
                 let _that = this;
-                console.log(_that.searchNameQuery)
                 _that.causeNameList = _that.causeList.map(({id,name})=> {
                     return {
                         id,
@@ -80,7 +79,7 @@
                 }).then((response) => {
                     _that.isLoading = false;
                     _that.causeList = response.data.cause_list;
-                    console.log(_that.causes)
+                    // console.log(_that.causes)
                 });
             },
             myChangeEvent(val){

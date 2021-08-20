@@ -26,11 +26,13 @@ use App\Http\Controllers\Api\SliderController;
 |
 */
 
-Route::get('slider-list',[SliderController::class,'index']);//5
-Route::get('cause-list',[CauseController::class,'index']);//5
-Route::get('about-list',[AboutController::class,'index']);//4
-Route::get('event-list',[EventController::class,'index']);//3
-Route::get('service-list',[ServiceController::class,'index']);//3
+Route::get('slider-list',[SliderController::class,'index']);
+Route::get('cause-list',[CauseController::class,'index']);
+Route::get('about-list',[AboutController::class,'index']);
+Route::get('event-list',[EventController::class,'index']);
+Route::get('service-list',[ServiceController::class,'index']);
+Route::get('gallery-list',[GalleryController::class,'index']);
+Route::post('new-contact',[ContactController::class,'store']);
 
 Route::middleware('auth:api')->group(function(){
 

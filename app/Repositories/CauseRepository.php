@@ -36,7 +36,15 @@ class CauseRepository
             return Cause::with('media')
                 ->where('status','=',1)
                 ->orderBy('created_at','DESC')
-                ->paginate(1);
+                ->paginate(6);
+        }
+        else if ($request->filled('isFeatured')){
+            return Cause::with('media')
+                ->where('status','=',1)
+                ->where('featured_status','=',1)
+                ->orderBy('created_at','DESC')
+                ->take(2)
+                ->get();
         }
         else{
             return Cause::with('media','contents','slider.media','galleries.media')

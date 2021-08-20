@@ -59,22 +59,22 @@
                             <div v-if="index === 0">
                                 <div v-if="paginationList.total >= paginationList.per_page" class="col-md-offset-4">
                                     <ul class="pagination">
+<!--                                        <li :class="[{disabled:!pagination.prev_page_url}]" class="page-item mx-1">-->
+<!--                                            <a @click.prevent="changeCausePage(paginationList.first_page_url)" href="#" class="text-white "><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>-->
+<!--                                        </li>-->
                                         <li :class="[{disabled:!pagination.prev_page_url}]" class="page-item mx-1">
-                                            <a @click.prevent="changeCausePage(paginationList.first_page_url)" href="#" class="px-3 bg-primary text-white py-2 rounded-sm"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+                                            <a @click.prevent="changeCausePage(paginationList.prev_page_url)" href="#" class="text-white  "><i class="fa fa-angle-left" aria-hidden="true"></i></a>
                                         </li>
-                                        <li :class="[{disabled:!pagination.prev_page_url}]" class="page-item mx-1">
-                                            <a @click.prevent="changeCausePage(paginationList.prev_page_url)" href="#" class="px-3 bg-primary text-white py-2 rounded-sm"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-                                        </li>
-                                        <li v-for="n in pagination.last_page" class="page-item mx-1" :key="n">
-                                            <a @click.prevent="changeCausePage('cause-list?page='+n)" class="px-3 bg-primary text-white py-2 rounded-sm" href="#">{{ n }}</a>
-                                        </li>
+<!--                                        <li v-for="n in pagination.last_page" class="page-item mx-1" :key="n">-->
+<!--                                            <a @click.prevent="changeCausePage('cause-list?page='+n)" class="text-white" href="#">{{ n }}</a>-->
+<!--                                        </li>-->
 
                                         <li :class="[{disabled:!pagination.next_page_url}]" class="page-item mx-1">
-                                            <a @click.prevent="changeCausePage(paginationList.next_page_url)" href="#" class="px-3 bg-primary text-white py-2 rounded-sm"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                            <a @click.prevent="changeCausePage(paginationList.next_page_url)" href="#" class="text-white "><i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                         </li>
-                                        <li :class="[{disabled:!pagination.next_page_url}]" class="page-item mx-1">
-                                            <a @click.prevent="changeCausePage(paginationList.last_page_url)" href="#" class="px-3 bg-primary text-white py-2 rounded-sm"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-                                        </li>
+<!--                                        <li :class="[{disabled:!pagination.next_page_url}]" class="page-item mx-1">-->
+<!--                                            <a @click.prevent="changeCausePage(paginationList.last_page_url)" href="#" class="text-white "><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>-->
+<!--                                        </li>-->
                                     </ul>
                                 </div>
                             </div>
@@ -88,6 +88,9 @@
 
 <script>
     import KProgress from 'k-progress';
+
+    import axios from 'axios'
+
     export default {
         name: "CauseList",
 
@@ -107,9 +110,28 @@
         methods:{
             changeCausePage(pageUrl){
                 let _that = this;
-                let collectData = []
-                _that.$emit('current-page-info',pageUrl)
-            }
+                _that.getCauseList(pageUrl);
+                let collectData = [];
+                collectData['cause'] = _that.causeList;
+                collectData['pagination'] = _that.paginationList;
+                _that.$emit('current-page-info',collectData)
+            },
+            getCauseList(pageUrl) {
+                let _that = this;
+                pageUrl = pageUrl == undefined ? 'cause-list?page=1' : pageUrl;
+                return axios.get(pageUrl, {
+                    params : {
+                        isPaginate : 1
+                    }
+                }).then((response) => {
+                    _that.causeList = response.data.cause_list.data;
+                    _that.paginationList  = response.data.cause_list;
+                    // console.log(_that.causes)
+                    // console.log(_that.pagination)
+                });
+            },
+
+
         },
 
         created() {

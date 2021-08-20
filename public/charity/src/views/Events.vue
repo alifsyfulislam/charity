@@ -9,39 +9,39 @@
                 </div>
             </div>
         </div>
-        <div class="news-wrap">
+        <PreLoader v-if="isLoading"></PreLoader>
+        <div v-else class="news-wrap">
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-8">
-                        <div class="">
-                            <form action="" method="GET" class="row feature-event-form mb-5">
-                                <div class="col-md-4 form-border-right form-wraper" style="padding-left: 9px !important;">
-                                    <label class="form-label" for="usr">Event Name</label>
-                                    <input type="text" name="eventkeyword" required="" placeholder="All Events" value="" class="feature-event-date" id="usr">
-                                </div>
-                                <div class="col-md-4 form-border-right form-wraper">
-                                    <label class="form-label" for="usr">Location</label>
-                                    <input type="text" name="eventlocation" required="" placeholder="United Kingdom" value="" class="feature-event-date" >
-                                </div>
+                        <!--                        <div class="">-->
+                        <!--                            <form action="" method="GET" class="row feature-event-form mb-5">-->
+                        <!--                                <div class="col-md-4 form-border-right form-wraper" style="padding-left: 9px !important;">-->
+                        <!--                                    <label class="form-label" for="usr">Event Name</label>-->
+                        <!--                                    <input type="text" name="eventkeyword" required="" placeholder="All Events" value="" class="feature-event-date" id="usr">-->
+                        <!--                                </div>-->
+                        <!--                                <div class="col-md-4 form-border-right form-wraper">-->
+                        <!--                                    <label class="form-label" for="usr">Location</label>-->
+                        <!--                                    <input type="text" name="eventlocation" required="" placeholder="United Kingdom" value="" class="feature-event-date" >-->
+                        <!--                                </div>-->
 
-                                <div class="col-md-4 form-wraper">
-                                    <label class="form-label" >Date</label>
-                                    <input type="date" name="eventdate" required="" placeholder="All dates" value="" class="feature-event-date" >
-                                </div>
+                        <!--                                <div class="col-md-4 form-wraper">-->
+                        <!--                                    <label class="form-label" >Date</label>-->
+                        <!--                                    <input type="date" name="eventdate" required="" placeholder="All dates" value="" class="feature-event-date" >-->
+                        <!--                                </div>-->
 
-                             </form>
-                        </div>
-                        <div class="news-content">
-                            <a href="#"><img src="../assets/images/x1.jpg.pagespeed.ic.JEX-772_YT.jpg" alt=""></a>
+                        <!--                            </form>-->
+                        <!--                        </div>-->
+                        <!--                        events-->
+                        <div class="news-content" v-for="item in events" :key="item.id">
+                            <a href="#"><img :src="item.media ? item.media[0].url : ''" alt=""></a>
                             <div class="p-4">
                                 <header class="entry-header d-flex flex-wrap justify-content-between align-items-center">
                                     <div class="header-elements">
-                                        <div class="posted-date">March 12, 2018</div>
-                                        <h2 class="entry-title"><a href="#">Toys for Children Campaign</a></h2>
+                                        <div class="posted-date">{{item.created_at}}</div>
+                                        <h2 class="entry-title"><a href="#">{{item.name}}</a></h2>
                                         <div class="post-metas d-flex flex-wrap align-items-center">
-                                            <span class="cat-links">in <a href="#">Causes</a></span>
                                             <span class="post-author">by <a href="#">Tom Phillips</a></span>
-                                            <span class="post-comments"><a href="#">3 Comments</a></span>
                                         </div>
                                     </div>
                                     <div class="donate-icon">
@@ -49,47 +49,35 @@
                                     </div>
                                 </header>
                                 <div class="entry-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris. Lorem ipsum
-                                        dolor sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus
-                                        vestib ulum mauris quis aliquam. Integer accumsan sodales odio, id tempus velit ullamc.</p>
+                                    <p>{{item.details}}</p>
                                 </div>
                                 <footer class="entry-footer">
                                     <a href="#" class="btn gradient-bg">Read More</a>
                                 </footer>
                             </div>
                         </div>
-                        <div class="news-content">
-                            <a href="#"><img src="../assets/images/x2.jpg.pagespeed.ic.KAKS36sNgN.jpg" alt=""></a>
-                            <div class="p-4">
-                                <header class="entry-header d-flex flex-wrap justify-content-between align-items-center">
-                                    <div class="header-elements">
-                                        <div class="posted-date">March 12, 2018</div>
-                                        <h2 class="entry-title"><a href="#">Toys for Children Campaign</a></h2>
-                                        <div class="post-metas d-flex flex-wrap align-items-center">
-                                            <span class="cat-links">in <a href="#">Causes</a></span>
-                                            <span class="post-author">by <a href="#">Tom Phillips</a></span>
-                                            <span class="post-comments"><a href="#">3 Comments</a></span>
+                        <!--                        pagination-->
+
+                        <div class="item-list text-left">
+                            <div v-if="events">
+                                <div v-for="(item, index) in events" :key="item.id">
+                                    <div v-if="index === 0">
+                                        <div v-if="pagination.total >= pagination.per_page" class="col-md-offset-4">
+                                            <ul class="pagination">
+
+                                                <li :class="[{disabled:!pagination.prev_page_url}]" class="page-item mx-1">
+                                                    <a @click.prevent="getEventList(pagination.prev_page_url)" href="#" class="text-white  "><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                                                </li>
+
+                                                <li :class="[{disabled:!pagination.next_page_url}]" class="page-item mx-1">
+                                                    <a @click.prevent="getEventList(pagination.next_page_url)" href="#" class="text-white "><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
-                                    <div class="donate-icon">
-                                        <a href="#"><img src="../assets/images/xdonate-icon.png.pagespeed.ic.5OLdXDGX0P.png" alt=""></a>
-                                    </div>
-                                </header>
-                                <div class="entry-content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus vestib ulum mauris. Lorem ipsum
-                                        dolor sit amet, consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus
-                                        vestib ulum mauris quis aliquam. Integer accumsan sodales odio, id tempus velit ullamc.</p>
                                 </div>
-                                <footer class="entry-footer">
-                                    <a href="#" class="btn gradient-bg">Read More</a>
-                                </footer>
                             </div>
                         </div>
-                        <ul class="pagination d-flex flex-wrap align-items-center p-0">
-                            <li class="active"><a href="#">01</a></li>
-                            <li><a href="#">02</a></li>
-                            <li><a href="#">03</a></li>
-                        </ul>
                     </div>
                     <div class="col-12 col-lg-4">
                         <div class="sidebar">
@@ -174,8 +162,53 @@
 </template>
 
 <script>
+    import PreLoader from '../components/layouts/PreLoader'
+    import axios from 'axios'
     export default {
-        name: "Events"
+        name: "Events",
+
+        components:{
+            PreLoader
+        },
+
+        data(){
+            return{
+                isLoading : true,
+                events : '',
+                pagination:{
+                    from: '',
+                    to: '',
+                    first_page_url: '',
+                    last_page: '',
+                    last_page_url: '',
+                    next_page_url:'',
+                    prev_page_url: '',
+                    path: '',
+                    per_page: 5,
+                    total: ''
+                },
+            }
+        },
+
+        methods:{
+            getEventList(pageUrl) {
+                let _that = this;
+                pageUrl = pageUrl == undefined ? 'event-list?page=1' : pageUrl;
+                return axios.get(pageUrl, {
+                    params : {
+                        isPaginate : 1
+                    }
+                }).then((response) => {
+                    _that.isLoading = false;
+                    _that.events = response.data.event_list.data;
+                    _that.pagination  = response.data.event_list;
+                });
+            },
+        },
+
+        async created() {
+            await this.getEventList()
+        }
     }
 </script>
 

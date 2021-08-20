@@ -7,13 +7,13 @@
                         <div class="row">
                             <div class="col-12 d-flex flex-wrap justify-content-between align-items-center">
                                 <div class="site-branding d-flex align-items-center">
-                                    <router-link class="d-block" :to="{ name: 'Home'}" rel="home">
+                                    <a href="#" class="d-block" rel="home" @click.prevent="forwardToHome">
                                         <img class="d-block" src="../../assets/images/xlogo.png.pagespeed.ic.jje9n1Rfdy.png" alt="logo">
-                                    </router-link>
+                                    </a>
                                 </div>
                                 <nav class="site-navigation d-flex justify-content-end align-items-center" :class="menuSwitch ? 'show' : ''">
                                     <ul class="d-flex flex-column flex-lg-row justify-content-lg-end align-content-center">
-                                        <li :class="menuSelection == 1 ? 'current-menu-item' : ''" @click="menuLiActive(1)">
+                                        <li id="parentList" :class="menuSelection == 1 ? 'current-menu-item' : ''" @click="menuLiActive(1)">
                                             <router-link :to="{ name: 'Home'}">
                                                 Home
                                             </router-link>
@@ -108,6 +108,11 @@
                 // console.log(item)
                 let _that = this;
                 _that.menuSelection = item
+            },
+            forwardToHome(){
+                let _that = this;
+                _that.menuSelection = 1;
+                _that.$router.push('/').catch(()=>{});
             }
         },
 

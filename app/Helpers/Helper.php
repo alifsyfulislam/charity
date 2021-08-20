@@ -31,7 +31,7 @@ class Helper
             mkdir(public_path($url), 777, true);
         }
         $filename = date('Ymdhis')."-".strtolower(preg_replace("/[^a-zA-Z0-9.]+/", "-", $image->getClientOriginalName()));
-        Image::make($image->getRealPath())->resize(49, 61)->save($url.$filename);
+        Image::make($image->getRealPath())->resize(82, 82)->save($url.$filename);
         return url($url.$filename);
     }
 

@@ -55,11 +55,4 @@ const router = new VueRouter({
     }
 })
 
-// router.beforeEach((to, from, next) => {
-//     // to top
-//     window.scrollTo(0, 0);
-//     next();
-// });
-
-
 export default router

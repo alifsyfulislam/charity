@@ -112,7 +112,7 @@
           }
         }).then((response) => {
           _that.events = response.data.event_list;
-          console.log(_that.events)
+          // console.log(_that.events)
         });
       },
 

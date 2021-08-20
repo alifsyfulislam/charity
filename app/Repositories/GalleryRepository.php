@@ -11,8 +11,18 @@ class GalleryRepository
     public function listing($request)
     {
 
-        return Gallery::with('media','cause.media')->orderBy('created_at','DESC')->paginate(15);
+        if ($request->filled('isVisibleItem')) {
+            return Gallery::with('media')
+                ->where('status', '=', 1)
+                ->orderBy('created_at', 'DESC')
+                ->take($request->isVisibleItem)
+                ->get();
+        }else{
+            return Gallery::with('media')
+                ->orderBy('created_at','DESC')
+                ->paginate(15);
 
+        }
     }
 
     public function show($id)

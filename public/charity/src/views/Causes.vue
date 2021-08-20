@@ -45,7 +45,6 @@
                     path: '',
                     per_page: 5,
                     total: ''
-
                 },
             }
         },
@@ -62,16 +61,13 @@
                     _that.isLoading = false;
                     _that.causes = response.data.cause_list.data;
                     _that.pagination  = response.data.cause_list;
-                    console.log(_that.causes)
-                    // console.log(_that.pagination)
                 });
             },
 
-            getStatusFromChild(pageUrl){
+            getStatusFromChild(data){
                 let _that = this;
-                _that.causes = '',
-                // this.$router.push({name:'Causes'}).catch(() => {});
-                _that.getCauseList(pageUrl);
+                data['cause'] = _that.causes
+                data['pagination'] = _that.pagination
             }
         },
         async created() {
