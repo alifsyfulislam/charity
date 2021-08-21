@@ -21,6 +21,14 @@ const routes = [
         }
     },
     {
+        path: '/cause-details/:slug',
+        name: 'CauseDetails',
+        component: () => import(/* webpackChunkName: "causedetails" */ '../views/CauseDetails'),
+        meta:{
+            title : 'Causes Details'
+        }
+    },
+    {
         path: '/gallery',
         name: 'Gallery',
         component: () => import(/* webpackChunkName: "gallery" */ '../views/Gallery'),

@@ -160,4 +160,13 @@ class CauseRepository
         $cause                     = Cause::where('name',$data['name'])->get();
         return $cause;
     }
+
+    public function getCauseDetails($slug)
+    {
+
+        return Cause::with('media','contents')
+            ->where('slug','=',$slug)
+            ->first();
+
+    }
 }

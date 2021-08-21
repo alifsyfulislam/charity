@@ -21,18 +21,20 @@
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="cause-content-wrap">
-                                        <header class="entry-header d-flex flex-wrap align-items-center">
-                                            <h3 class="entry-title w-100 m-0"><a href="#">{{item.name}}</a></h3>
-                                            <div class="posted-date">
-                                                <a href="#">{{item.created_at}}</a>
+                                        <router-link :to="{ name: 'CauseDetails', params: { slug: item.slug }}">
+                                            <header class="entry-header d-flex flex-wrap align-items-center">
+                                                <h3 class="entry-title w-100 m-0">{{item.name}}</h3>
+                                                <div class="posted-date">
+                                                    <p class="m-0">{{item.created_at}}</p>
+                                                </div>
+                                                <div class="cats-links">
+                                                    <p class="m-0">{{item.location}}</p>
+                                                </div>
+                                            </header>
+                                            <div class="entry-content">
+                                                <p class="m-0">{{item.details}}</p>
                                             </div>
-                                            <div class="cats-links">
-                                                <a href="#">{{item.location}}</a>
-                                            </div>
-                                        </header>
-                                        <div class="entry-content">
-                                            <p class="m-0">{{item.details}}</p>
-                                        </div>
+                                        </router-link>
                                         <div class="entry-footer mt-5">
                                             <a href="#" class="btn gradient-bg mr-2">Donate Now</a>
                                         </div>

@@ -82,4 +82,9 @@ class CauseController extends Controller
 
         return $this->causeService->checkUniqueIdentity($request);
     }
+
+    public function getCauseDetails($slug){
+
+        return $this->causeService->getCauseDetails($slug);
+    }
 }

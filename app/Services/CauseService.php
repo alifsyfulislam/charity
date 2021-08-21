@@ -331,4 +331,34 @@ class CauseService
             ]);
         }
     }
+
+    public function getCauseDetails($slug){
+
+        DB::beginTransaction();
+
+        try{
+
+            $cause_info             = $this->causeRepository->getCauseDetails($slug);
+
+        }catch (Exception $e) {
+
+            DB::rollBack();
+
+            Log::error('Found Exception: ' . $e->getMessage() . ' [Script: ' . __CLASS__ . '@' . __FUNCTION__ . '] [Origin: ' . $e->getFile() . '-' . $e->getLine() . ']');
+
+            return response()->json([
+                'status'            => 424,
+                'messages'          => config('status.status_code.424'),
+                'error'             => $e->getMessage()
+            ]);
+        }
+
+        DB::commit();
+
+        return response()->json([
+            'status'                => 200,
+            'message'               => config('status.status_code.200'),
+            'cause_info'            => $cause_info
+        ]);
+    }
 }
