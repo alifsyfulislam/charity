@@ -3,20 +3,21 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
-
+export const store = new Vuex.Store({
+    strict : true,
+    //intialize
     state: {
-        causeSlug : "Zakat",
-    },
 
-    getters:{
-        getCauseSlug : state => {
-            return state.causeSlug
-        }
     },
+    //get
+    getters:{
+
+    },
+    // update
     mutations: {
 
     },
+    //action
     actions:{
 
     }
